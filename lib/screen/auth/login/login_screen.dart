@@ -57,8 +57,7 @@ class LoginScreen extends StatelessWidget {
                         paddingTop: 25,
                       ),
                       RowRemmberMeAndForgetPassword(
-                        pressForget: () =>
-                            Get.off(const ForgetPasswordScreen()),
+                        pressForget: () => Get.to(const ForgetPasswordScreen()),
                       ),
                       ElevatedButtonDef(
                         press: () {},

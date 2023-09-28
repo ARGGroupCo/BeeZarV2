@@ -34,7 +34,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 paddingTop: 70,
               ),
               ElevatedButtonDef(
-                press: () => Get.off(const OtpScreen()),
+                press: () => Get.to(const OtpScreen()),
                 text: "استمرار",
                 padding: 50,
               ),

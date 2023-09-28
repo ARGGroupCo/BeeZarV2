@@ -4,26 +4,25 @@ import 'package:flutter/material.dart';
 
 AppBar appBarAuth(void Function() press, String text) {
   return AppBar(
-    title: SizedBox(
-      child: InkWell(
-        onTap: press,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Icon(
-              Icons.arrow_back_ios,
-              color: ColorManager.black,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Text(
-                text,
-                style: FontDef.w600S17Cb,
-              ),
-            ),
-          ],
-        ),
+    automaticallyImplyLeading: false,
+    leading: IconButton(
+      onPressed: press,
+      icon: const Icon(
+        Icons.arrow_back_ios,
+        color: ColorManager.black,
       ),
+    ),
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Text(
+            text,
+            style: FontDef.w600S17Cb,
+          ),
+        ),
+      ],
     ),
     backgroundColor: Colors.transparent,
     shadowColor: Colors.transparent,
