@@ -10,11 +10,41 @@ class FontDef {
     fontSize: 28,
     color: ColorManager.primaryColor,
   );
+  static const TextStyle w700S42CP = TextStyle(
+    fontFamily: fontType,
+    fontWeight: FontWeight.w700,
+    fontSize: 42,
+    color: ColorManager.primaryColor,
+  );
+  static const TextStyle w500152Cg = TextStyle(
+    fontFamily: fontType,
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
+    color: ColorManager.grayText,
+  );
+  static const TextStyle w500S13Cg = TextStyle(
+    fontFamily: fontType,
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    color: ColorManager.grayText,
+  );
+  static const TextStyle w700182Cb = TextStyle(
+    fontFamily: fontType,
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: ColorManager.black,
+  );
   static const TextStyle w700S28Cw = TextStyle(
     fontFamily: fontType,
     fontWeight: FontWeight.w700,
     fontSize: 28,
     color: ColorManager.white,
+  );
+  static const TextStyle w600S17Cb = TextStyle(
+    fontFamily: fontType,
+    fontWeight: FontWeight.w600,
+    fontSize: 17,
+    color: ColorManager.black,
   );
   static const TextStyle w600S18Cg = TextStyle(
     fontFamily: fontType,

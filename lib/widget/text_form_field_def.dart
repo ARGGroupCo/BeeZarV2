@@ -11,6 +11,7 @@ class TextFormFieldDeF extends StatelessWidget {
     this.icon,
     this.validator,
     this.pressIcon,
+    this.keyboard,
   });
   final String label;
   final IconData? icon;
@@ -18,11 +19,13 @@ class TextFormFieldDeF extends StatelessWidget {
   final String? Function(String?)? validator;
   final double paddingTop;
   final void Function()? pressIcon;
+  final TextInputType? keyboard;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: paddingTop),
       child: TextFormField(
+        keyboardType: keyboard,
         controller: controller,
         validator: validator,
         decoration: InputDecoration(

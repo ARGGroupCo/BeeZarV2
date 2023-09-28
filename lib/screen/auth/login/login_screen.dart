@@ -1,5 +1,6 @@
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
+import 'package:beezer_v2/screen/auth/forgit_password/forget_password_screen.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
@@ -21,10 +22,10 @@ class LoginScreen extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       bottomNavigationBar: const SVGBottomBar(),
-      body: Container(
-        padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
-        child: Center(
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -62,7 +63,8 @@ class LoginScreen extends StatelessWidget {
                       RowRemmberMeAndForgetPassword(
                         check: true,
                         pressBox: (value) {},
-                        pressForget: () {},
+                        pressForget: () =>
+                            Get.off(const ForgetPasswordScreen()),
                       ),
                       ElevatedButtonDef(
                         press: () {},
@@ -71,9 +73,7 @@ class LoginScreen extends StatelessWidget {
                       const RowDividerTextDivider(),
                       const GoogleFacebookIcon(),
                       HaveAccount(
-                        press: () {
-                          Get.off(const RegisterScreen());
-                        },
+                        press: () => Get.off(const RegisterScreen()),
                         text: "ليس لديك حساب؟",
                         textPress: "إنشاء حساب",
                       ),

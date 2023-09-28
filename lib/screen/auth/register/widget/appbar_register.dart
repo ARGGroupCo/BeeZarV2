@@ -2,11 +2,11 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-AppBar appBar(BuildContext context) {
+AppBar appBarRegister(BuildContext context) {
   return AppBar(
     toolbarHeight: 95,
-    backgroundColor: Colors.white10,
-    shadowColor: Colors.white10,
+    backgroundColor: Colors.transparent,
+    shadowColor: Colors.transparent,
     elevation: 0,
     flexibleSpace: Stack(
       children: [

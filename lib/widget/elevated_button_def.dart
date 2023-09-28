@@ -15,7 +15,7 @@ class ElevatedButtonDef extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: padding ?? 0, top: padding ?? 0),
+      padding: EdgeInsets.only(top: padding ?? 0),
       child: ElevatedButton(
         onPressed: press,
         style: ElevatedButton.styleFrom(
