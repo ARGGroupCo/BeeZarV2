@@ -2,16 +2,22 @@ import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:flutter/material.dart';
 
-class RowRemmberMeAndForgetPassword extends StatelessWidget {
+class RowRemmberMeAndForgetPassword extends StatefulWidget {
   const RowRemmberMeAndForgetPassword({
     super.key,
-    required this.check,
-    required this.pressBox,
     required this.pressForget,
   });
-  final bool check;
-  final void Function(bool?) pressBox;
   final void Function() pressForget;
+
+  @override
+  State<RowRemmberMeAndForgetPassword> createState() =>
+      _RowRemmberMeAndForgetPasswordState();
+}
+
+bool _check = true;
+
+class _RowRemmberMeAndForgetPasswordState
+    extends State<RowRemmberMeAndForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,16 +28,18 @@ class RowRemmberMeAndForgetPassword extends StatelessWidget {
           Row(
             children: [
               Checkbox(
-                value: check,
+                value: _check,
                 activeColor: ColorManager.darkPrimaryColor,
                 checkColor: ColorManager.white,
-                onChanged: pressBox,
+                onChanged: (value) => setState(() {
+                  _check = !_check;
+                }),
               ),
               const Text("تذكرني", style: FontDef.w700S12Cb),
             ],
           ),
           TextButton(
-              onPressed: pressForget,
+              onPressed: widget.pressForget,
               child: const Text(
                 "نسيت كلمة المرور؟",
                 style: FontDef.w700S12Cb,
