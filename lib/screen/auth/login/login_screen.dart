@@ -1,6 +1,7 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
+import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:flutter/material.dart';
 import '../../../widget/text_form_field_def.dart';
@@ -51,32 +52,16 @@ class LoginScreen extends StatelessWidget {
                           return ValidatorDef.validatorPassword(p0);
                         },
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: true,
-                                activeColor: ColorManager.darkPrimaryColor,
-                                checkColor: ColorManager.white,
-                                onChanged: (value) {},
-                              ),
-                              const Text("تذكرني", style: FontDef.w700S12Cb),
-                            ],
-                          ),
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "نسيت كلمة المرور؟",
-                                style: FontDef.w700S12Cb,
-                              ))
-                        ],
+                      RowRemmberMeAndForgetPassword(
+                        check: true,
+                        pressBox: (value) {},
+                        pressForget: () {},
                       ),
                       ElevatedButtonDef(
                         press: () {},
                         text: "تسجيل دخول",
                       ),
+                      const RowDividerTextDivider(),
                     ],
                   ),
                 ),
@@ -84,6 +69,46 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RowDividerTextDivider extends StatelessWidget {
+  const RowDividerTextDivider({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        DividerDef(),
+        Text(
+          "أو التسجيل عن طريق",
+          style: FontDef.w400S13Cb,
+        ),
+        DividerDef()
+      ],
+    );
+  }
+}
+
+class DividerDef extends StatelessWidget {
+  const DividerDef({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Divider(
+        height: 25,
+        color: ColorManager.black,
+        thickness: 1,
+        indent: MediaQuery.sizeOf(context).width / 25,
+        endIndent: MediaQuery.sizeOf(context).width / 25,
       ),
     );
   }
