@@ -1,6 +1,7 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
+import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:flutter/material.dart';
 import '../../../widget/text_form_field_def.dart';
 
@@ -72,17 +73,10 @@ class LoginScreen extends StatelessWidget {
                               ))
                         ],
                       ),
-                      Container(
-                        height: 50,
-                        width: 200,
-                        decoration: const BoxDecoration(
-                          color: ColorManager.primaryColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                        child: Center(child: Text("تسجيل الدخول")),
-                      )
+                      ElevatedButtonDef(
+                        press: () {},
+                        text: "تسجيل دخول",
+                      ),
                     ],
                   ),
                 ),
