@@ -3,6 +3,7 @@ import 'package:beezer_v2/widget/app_bar_auth.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/have_account.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
+import 'package:beezer_v2/widget/text_form_field_password_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,17 +22,15 @@ class ResetPasswordScreen extends StatelessWidget {
           padding: const EdgeInsets.only(left: 15, right: 15),
           child: Column(
             children: [
-              TextFormFieldDeF(
+              TextFormFielPassword(
                 label: "إنشاء كلمة مرور جديدة",
                 controller: password,
                 paddingTop: 80,
-                icon: Icons.remove_red_eye,
               ),
-              TextFormFieldDeF(
+              TextFormFielPassword(
                 label: "تأكيد كلمة المرور",
                 controller: rePassword,
                 paddingTop: 20,
-                icon: Icons.remove_red_eye,
               ),
               ElevatedButtonDef(
                 press: () {},

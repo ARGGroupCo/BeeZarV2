@@ -1,31 +1,35 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/res/validator_def.dart';
 import 'package:flutter/material.dart';
 
-class TextFormFieldDeF extends StatelessWidget {
-  const TextFormFieldDeF({
+class TextFormFielPassword extends StatefulWidget {
+  const TextFormFielPassword({
     super.key,
     required this.label,
     required this.controller,
     required this.paddingTop,
-    this.icon,
-    this.validator,
-    this.keyboard,
   });
   final String label;
-  final IconData? icon;
   final TextEditingController controller;
-  final String? Function(String?)? validator;
   final double paddingTop;
-  final TextInputType? keyboard;
+
+  @override
+  State<TextFormFielPassword> createState() => _TextFormFieldDeFState();
+}
+
+bool _show = false;
+
+class _TextFormFieldDeFState extends State<TextFormFielPassword> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: paddingTop),
+      padding: EdgeInsets.only(top: widget.paddingTop),
       child: TextFormField(
-        keyboardType: keyboard,
-        controller: controller,
-        validator: validator,
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: !_show,
+        controller: widget.controller,
+        validator: (value) => ValidatorDef.validatorPassword(value),
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
@@ -44,11 +48,15 @@ class TextFormFieldDeF extends StatelessWidget {
               Radius.circular(20),
             ),
           ),
-          suffixIcon: icon != null
-              ? Icon(icon, color: ColorManager.darkGrayText)
-              : null,
+          suffixIcon: InkWell(
+            onTap: () => setState(() {
+              _show = !_show;
+            }),
+            child: Icon(_show ? Icons.visibility_off : Icons.visibility,
+                color: ColorManager.darkGrayText),
+          ),
           label: Text(
-            label,
+            widget.label,
             style: FontDef.w400S14Cg,
           ),
         ),

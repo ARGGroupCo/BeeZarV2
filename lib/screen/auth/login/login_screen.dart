@@ -9,6 +9,7 @@ import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
+import 'package:beezer_v2/widget/text_form_field_password_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,15 +51,10 @@ class LoginScreen extends StatelessWidget {
                           return ValidatorDef.validatorEmail(p0);
                         },
                       ),
-                      TextFormFieldDeF(
+                      TextFormFielPassword(
                         controller: password,
                         label: "كلمة المرور",
-                        icon: Icons.remove_red_eye,
                         paddingTop: 25,
-                        pressIcon: () {},
-                        validator: (p0) {
-                          return ValidatorDef.validatorPassword(p0);
-                        },
                       ),
                       RowRemmberMeAndForgetPassword(
                         check: true,

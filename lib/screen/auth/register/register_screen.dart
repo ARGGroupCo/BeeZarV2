@@ -5,6 +5,7 @@ import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
+import 'package:beezer_v2/widget/text_form_field_password_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,19 +44,15 @@ class RegisterScreen extends StatelessWidget {
                   paddingTop: 20,
                   keyboard: TextInputType.phone,
                 ),
-                TextFormFieldDeF(
+                TextFormFielPassword(
                   label: "كلمة المرور",
                   controller: password,
                   paddingTop: 20,
-                  icon: Icons.remove_red_eye,
-                  pressIcon: () {},
                 ),
-                TextFormFieldDeF(
+                TextFormFielPassword(
                   label: "تأكيد كلمة المرور",
                   controller: rePassword,
                   paddingTop: 20,
-                  icon: Icons.remove_red_eye,
-                  pressIcon: () {},
                 ),
                 ElevatedButtonDef(
                   press: () {},
