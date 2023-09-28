@@ -1,11 +1,13 @@
-import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
+import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
+import 'package:beezer_v2/widget/google_facebook_icon.dart';
+import 'package:beezer_v2/widget/have_account.dart';
+import 'package:beezer_v2/widget/text_form_field_def.dart';
 import 'package:flutter/material.dart';
-import '../../../widget/text_form_field_def.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,6 +18,7 @@ class LoginScreen extends StatelessWidget {
     TextEditingController password = TextEditingController();
     final formKey = GlobalKey<FormState>();
     return Scaffold(
+      bottomNavigationBar: const SVGBottomBar(),
       body: Container(
         padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
         child: Center(
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                         controller: password,
                         label: "كلمة المرور",
                         icon: Icons.remove_red_eye,
-                        paddingTop: 10,
+                        paddingTop: 25,
                         validator: (p0) {
                           return ValidatorDef.validatorPassword(p0);
                         },
@@ -63,6 +66,12 @@ class LoginScreen extends StatelessWidget {
                         text: "تسجيل دخول",
                       ),
                       const RowDividerTextDivider(),
+                      const GoogleFacebookIcon(),
+                      HaveAccount(
+                        press: () {},
+                        text: "ليس لديك حساب؟",
+                        textPress: "إنشاء حساب",
+                      ),
                     ],
                   ),
                 ),

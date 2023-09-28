@@ -14,27 +14,30 @@ class RowRemmberMeAndForgetPassword extends StatelessWidget {
   final void Function() pressForget;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Checkbox(
-              value: check,
-              activeColor: ColorManager.darkPrimaryColor,
-              checkColor: ColorManager.white,
-              onChanged: pressBox,
-            ),
-            const Text("تذكرني", style: FontDef.w700S12Cb),
-          ],
-        ),
-        TextButton(
-            onPressed: pressForget,
-            child: const Text(
-              "نسيت كلمة المرور؟",
-              style: FontDef.w700S12Cb,
-            ))
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Checkbox(
+                value: check,
+                activeColor: ColorManager.darkPrimaryColor,
+                checkColor: ColorManager.white,
+                onChanged: pressBox,
+              ),
+              const Text("تذكرني", style: FontDef.w700S12Cb),
+            ],
+          ),
+          TextButton(
+              onPressed: pressForget,
+              child: const Text(
+                "نسيت كلمة المرور؟",
+                style: FontDef.w700S12Cb,
+              ))
+        ],
+      ),
     );
   }
 }

@@ -9,16 +9,19 @@ class RowDividerTextDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        DividerDef(),
-        Text(
-          "أو التسجيل عن طريق",
-          style: FontDef.w400S13Cb,
-        ),
-        DividerDef()
-      ],
+    return const Padding(
+      padding: EdgeInsets.only(top: 15, bottom: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          DividerDef(),
+          Text(
+            "أو التسجيل عن طريق",
+            style: FontDef.w400S13Cb,
+          ),
+          DividerDef()
+        ],
+      ),
     );
   }
 }
