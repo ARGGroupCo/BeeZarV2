@@ -3,18 +3,21 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:flutter/material.dart';
 
 class TextFormFieldDeF extends StatelessWidget {
-  const TextFormFieldDeF(
-      {super.key,
-      required this.label,
-      required this.controller,
-      required this.paddingTop,
-      this.icon,
-      this.validator});
+  const TextFormFieldDeF({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.paddingTop,
+    this.icon,
+    this.validator,
+    this.pressIcon,
+  });
   final String label;
   final IconData? icon;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final double paddingTop;
+  final void Function()? pressIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +44,9 @@ class TextFormFieldDeF extends StatelessWidget {
             ),
           ),
           suffixIcon: icon != null
-              ? Icon(icon, color: ColorManager.darkGrayText)
+              ? InkWell(
+                  onTap: pressIcon,
+                  child: Icon(icon, color: ColorManager.darkGrayText))
               : null,
           label: Text(
             label,

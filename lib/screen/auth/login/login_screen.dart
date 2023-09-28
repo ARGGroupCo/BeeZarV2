@@ -3,11 +3,13 @@ import 'package:beezer_v2/res/validator_def.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
+import 'package:beezer_v2/screen/auth/register/register_screen.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -52,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                         label: "كلمة المرور",
                         icon: Icons.remove_red_eye,
                         paddingTop: 25,
+                        pressIcon: () {},
                         validator: (p0) {
                           return ValidatorDef.validatorPassword(p0);
                         },
@@ -68,7 +71,9 @@ class LoginScreen extends StatelessWidget {
                       const RowDividerTextDivider(),
                       const GoogleFacebookIcon(),
                       HaveAccount(
-                        press: () {},
+                        press: () {
+                          Get.off(const RegisterScreen());
+                        },
                         text: "ليس لديك حساب؟",
                         textPress: "إنشاء حساب",
                       ),

@@ -7,25 +7,30 @@ class ElevatedButtonDef extends StatelessWidget {
     super.key,
     required this.press,
     required this.text,
+    this.padding,
   });
   final String text;
   final void Function() press;
+  final double? padding;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: press,
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(10),
-        backgroundColor: ColorManager.primaryColor,
-        maximumSize: Size(MediaQuery.sizeOf(context).width, 50),
-        minimumSize: Size(MediaQuery.sizeOf(context).width, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+    return Padding(
+      padding: EdgeInsets.only(bottom: padding ?? 0, top: padding ?? 0),
+      child: ElevatedButton(
+        onPressed: press,
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(10),
+          backgroundColor: ColorManager.primaryColor,
+          maximumSize: Size(MediaQuery.sizeOf(context).width, 50),
+          minimumSize: Size(MediaQuery.sizeOf(context).width, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
-      ),
-      child: Text(
-        text,
-        style: FontDef.w700S16Cw,
+        child: Text(
+          text,
+          style: FontDef.w700S16Cw,
+        ),
       ),
     );
   }
