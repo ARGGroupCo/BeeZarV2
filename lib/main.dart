@@ -1,5 +1,5 @@
 import 'package:beezer_v2/res/binding_def.dart';
-import 'package:beezer_v2/screen/auth/login/login_screen.dart';
+import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: GoogleFonts.cairo().fontFamily),
       locale: const Locale("ar"),
       supportedLocales: const [Locale("ar")],
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       initialBinding: BindingDef(),
-      home: const LoginScreen(),
+      home: const HomeScreen(),
     );
   }
 }

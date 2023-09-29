@@ -37,6 +37,11 @@ class FontDef {
     fontSize: 17,
     color: ColorManager.black,
   );
+  static const TextStyle w400S15Cb = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 15,
+    color: ColorManager.black,
+  );
   static const TextStyle w600S18Cg = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 18,
