@@ -1,10 +1,12 @@
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
+import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/forgit_password/forget_password_screen.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
 import 'package:beezer_v2/screen/auth/register/register_screen.dart';
+import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
@@ -18,6 +20,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.find();
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -60,7 +63,20 @@ class LoginScreen extends StatelessWidget {
                         pressForget: () => Get.to(const ForgetPasswordScreen()),
                       ),
                       ElevatedButtonDef(
-                        press: () {},
+                        press: () async {
+                          if (formKey.currentState!.validate()) {
+                            var res = await authController.login(
+                                email.text, password.text);
+                            if (res) {
+                              Get.off(const HomeScreen());
+                            } else {
+                              Get.snackbar("خطأ",
+                                  "تم ادخال اسم المستخدم او كلمة المرور بشكل خاطئ");
+                            }
+                          } else {
+                            Get.snackbar("خطأ", "الرجاء ادخال معلومات صحيحة");
+                          }
+                        },
                         text: "تسجيل دخول",
                       ),
                       const RowDividerTextDivider(),

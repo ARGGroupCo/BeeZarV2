@@ -1,5 +1,7 @@
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/forgit_password/forget_password_screen.dart';
+import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/widget/app_bar_auth.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     String otpval = "";
+    AuthController authController = Get.find();
     return Scaffold(
       appBar: appBarAuth(() => Get.off(const ForgetPasswordScreen()), "العودة"),
       body: SingleChildScrollView(
@@ -45,7 +48,18 @@ class OtpScreen extends StatelessWidget {
                 ),
               ),
               ElevatedButtonDef(
-                press: () {},
+                press: () async {
+                  if (otpval.length == 6) {
+                    var res = await authController.sendOTP(otpval);
+                    if (res) {
+                      Get.offAll(const HomeScreen());
+                    } else {
+                      Get.snackbar("خطأ", "تم ادخال رمز خاطئ");
+                    }
+                  } else {
+                    Get.snackbar("خطأ", "الرجاء ادخال الرمز بطريقة صحيح");
+                  }
+                },
                 text: "إرسال",
                 padding: 80,
               )

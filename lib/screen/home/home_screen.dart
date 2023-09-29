@@ -1,4 +1,3 @@
-import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/widget/app_bar_home.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
