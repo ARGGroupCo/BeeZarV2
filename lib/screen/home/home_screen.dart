@@ -16,24 +16,18 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: const BottomNavigationBarDef(),
       body: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            RowShowAll(press: () {}, text: "الأقسام"),
-            RowItemCategories(list: listCatogory),
-            RowShowAll(press: () {}, text: "الأكثر شهرة"),
-            RowItemHome(
-              list: listfamest,
-              sizeH: MediaQuery.sizeOf(context).height / 5,
-              sizeW: MediaQuery.sizeOf(context).height / 5 - 40,
-            ),
-            RowShowAll(press: () {}, text: "شوهد مؤخراً"),
-            RowItemHome(
-              list: listLast,
-              sizeH: MediaQuery.sizeOf(context).height / 4.5,
-              sizeW: MediaQuery.sizeOf(context).height / 4.5 - 50,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              RowShowAll(press: () {}, text: "الأقسام"),
+              RowItemCategories(list: listCatogory),
+              RowShowAll(press: () {}, text: "الأكثر شهرة"),
+              RowItemHome(list: listfamest, sizeH: 160, sizeW: 125),
+              RowShowAll(press: () {}, text: "شوهد مؤخراً"),
+              RowItemHome(list: listLast, sizeH: 170, sizeW: 130),
+            ],
+          ),
         ),
       ),
     );
@@ -46,7 +40,11 @@ List<Widget> listCatogory = [
     mainAxisAlignment: MainAxisAlignment.center,
     //list widget
     children: [
-      Image.asset("lib/assets/images/Red-Ford-Mustang-PNG-HD 1.png"),
+      Image.asset(
+        "lib/assets/images/Red-Ford-Mustang-PNG-HD 1.png",
+        height: 50,
+        width: 50,
+      ),
       const Text(
         "Cars",
         style: FontDef.w600S9Cb,
@@ -57,7 +55,11 @@ List<Widget> listCatogory = [
     mainAxisAlignment: MainAxisAlignment.center,
     //list widget
     children: [
-      Image.asset("lib/assets/images/pngwing 4.png"),
+      Image.asset(
+        "lib/assets/images/pngwing 4.png",
+        height: 50,
+        width: 50,
+      ),
       const Text(
         "Smart phones",
         style: FontDef.w600S9Cb,
@@ -68,7 +70,11 @@ List<Widget> listCatogory = [
     mainAxisAlignment: MainAxisAlignment.center,
     //list widget
     children: [
-      Image.asset("lib/assets/images/sofa.png"),
+      Image.asset(
+        "lib/assets/images/sofa.png",
+        height: 50,
+        width: 50,
+      ),
       const Text(
         "Furniture",
         style: FontDef.w600S9Cb,
@@ -79,7 +85,11 @@ List<Widget> listCatogory = [
     mainAxisAlignment: MainAxisAlignment.center,
     //list widget
     children: [
-      Image.asset("lib/assets/images/My project (3) 1.png"),
+      Image.asset(
+        "lib/assets/images/My project (3) 1.png",
+        height: 50,
+        width: 50,
+      ),
       const Text(
         "Real estate",
         style: FontDef.w600S9Cb,

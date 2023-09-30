@@ -15,7 +15,7 @@ class RowItemCategories extends StatelessWidget {
     Color color;
     List<BoxShadow> shadow;
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height / 8,
+      height: 100,
       child: ListView.builder(
         itemCount: list.length,
         scrollDirection: Axis.horizontal,
@@ -43,17 +43,18 @@ class RowItemCategories extends StatelessWidget {
                     controller.cheangeCategory(index);
                   },
                   child: Container(
-                      margin: const EdgeInsets.only(
-                          left: 10, top: 5, bottom: 5, right: 5),
-                      padding: const EdgeInsets.all(5),
-                      height: MediaQuery.sizeOf(context).height / 8,
-                      width: MediaQuery.sizeOf(context).height / 8 - 20,
-                      decoration: BoxDecoration(
-                        color: color,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: shadow,
-                      ),
-                      child: list[index]),
+                    margin: const EdgeInsets.only(
+                        left: 10, top: 5, bottom: 5, right: 5),
+                    padding: const EdgeInsets.all(5),
+                    height: 100,
+                    width: 85,
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: shadow,
+                    ),
+                    child: list[index],
+                  ),
                 );
               });
         },
