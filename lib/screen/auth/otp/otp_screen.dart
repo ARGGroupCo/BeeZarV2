@@ -1,6 +1,5 @@
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/auth/auth_controller.dart';
-import 'package:beezer_v2/screen/auth/forgit_password/forget_password_screen.dart';
 import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/widget/app_bar_auth.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
