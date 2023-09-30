@@ -1,5 +1,4 @@
 import 'package:beezer_v2/res/binding_def.dart';
-import 'package:beezer_v2/screen/auth/splash/splash_screen.dart';
 import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
