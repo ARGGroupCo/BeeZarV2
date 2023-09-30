@@ -31,21 +31,24 @@ class _TextFormFieldDeFState extends State<TextFormFielPassword> {
         controller: widget.controller,
         validator: (value) => ValidatorDef.validatorPassword(value),
         decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.only(top: 8, bottom: 8, left: 15, right: 15),
           border: const OutlineInputBorder(
+            borderSide: BorderSide(color: ColorManager.primaryColor, width: 1),
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(35),
             ),
           ),
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorManager.primaryColor, width: 2),
+            borderSide: BorderSide(color: ColorManager.primaryColor, width: 1),
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(35),
             ),
           ),
           enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorManager.primaryColor, width: 2),
+            borderSide: BorderSide(color: ColorManager.primaryColor, width: 1),
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(35),
             ),
           ),
           suffixIcon: InkWell(

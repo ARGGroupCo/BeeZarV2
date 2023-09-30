@@ -5,7 +5,7 @@ import 'package:beezer_v2/screen/auth/forgit_password/forget_password_screen.dar
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
-import 'package:beezer_v2/screen/auth/register/register_screen.dart';
+import 'package:beezer_v2/screen/auth/register/register_screen_one.dart';
 import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
       bottomNavigationBar: const SVGBottomBar(),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.only(top: 60, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 60, left: 30, right: 30),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                       TextFormFielPassword(
                         controller: password,
                         label: "كلمة المرور",
-                        paddingTop: 25,
+                        paddingTop: 30,
                       ),
                       RowRemmberMeAndForgetPassword(
                         pressForget: () => Get.to(const ForgetPasswordScreen()),
@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                       const RowDividerTextDivider(),
                       const GoogleFacebookIcon(),
                       HaveAccount(
-                        press: () => Get.off(const RegisterScreen()),
+                        press: () => Get.off(const RegisterScreenOne()),
                         text: "ليس لديك حساب؟",
                         textPress: "إنشاء حساب",
                       ),

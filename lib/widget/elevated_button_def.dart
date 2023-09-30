@@ -24,7 +24,7 @@ class ElevatedButtonDef extends StatelessWidget {
           maximumSize: Size(MediaQuery.sizeOf(context).width, 50),
           minimumSize: Size(MediaQuery.sizeOf(context).width, 50),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(35),
           ),
         ),
         child: Text(

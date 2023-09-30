@@ -1,5 +1,4 @@
-import 'package:beezer_v2/res/color_manager.dart';
-import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/widget/input_decration_def.dart';
 import 'package:flutter/material.dart';
 
 class TextFormFieldDeF extends StatelessWidget {
@@ -26,32 +25,7 @@ class TextFormFieldDeF extends StatelessWidget {
         keyboardType: keyboard,
         controller: controller,
         validator: validator,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorManager.primaryColor, width: 2),
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorManager.primaryColor, width: 2),
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-          suffixIcon: icon != null
-              ? Icon(icon, color: ColorManager.darkGrayText)
-              : null,
-          label: Text(
-            label,
-            style: FontDef.w400S14Cg,
-          ),
-        ),
+        decoration: inputDecorationDef(icon, label),
       ),
     );
   }

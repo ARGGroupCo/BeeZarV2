@@ -1,7 +1,18 @@
+import 'package:beezer_v2/model/register_user_model.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
   bool remmberMy = true;
+  bool? checkUser;
+  RegisterUserModel registerUserModel = RegisterUserModel();
+
+  @override
+  void onInit() {
+    checkToken();
+    super.onInit();
+  }
+
   void changeRemmberMy() {
     remmberMy = !remmberMy;
     update();
@@ -11,8 +22,7 @@ class AuthController extends GetxController {
     return true;
   }
 
-  Future<bool> register(
-      String name, String mail, String phone, String password) async {
+  Future<bool> register() async {
     return true;
   }
 
@@ -26,5 +36,15 @@ class AuthController extends GetxController {
 
   Future<bool> restPassword(String oldPassword, String newPassword) async {
     return true;
+  }
+
+  Future<bool> checkToken() async {
+    var storage = GetStorage();
+    if (storage.read("Token") != null || storage.read("Token") != "") {
+      //تعليمة فحص التوكن ثم فحص اذا صح الذهاب الى الصفحة الرئيسية وإلا الى تسجيل الدخول
+      checkUser = false;
+      return true;
+    }
+    return false;
   }
 }
