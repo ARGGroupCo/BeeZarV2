@@ -56,7 +56,7 @@ class RegisterScreenTwo extends StatelessWidget {
                       if (password.text == rePassword.text) {
                         var res = await authController.register();
                         if (res) {
-                          Get.off(const OtpScreen());
+                          Get.to(const OtpScreen());
                         } else {
                           Get.snackbar("خطأ",
                               "تم استخدام البريد الالكتروني مسبقاً او حدث خطأ ما الرجاء الاتصال بالمسوؤل");

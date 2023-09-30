@@ -1,5 +1,6 @@
 import 'package:beezer_v2/res/binding_def.dart';
 import 'package:beezer_v2/screen/auth/splash/splash_screen.dart';
+import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       initialBinding: BindingDef(),
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }

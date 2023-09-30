@@ -22,6 +22,11 @@ class FontDef {
     fontSize: 13,
     color: ColorManager.grayText,
   );
+  static const TextStyle w500S13Cb = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    color: ColorManager.black,
+  );
   static const TextStyle w700182Cb = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 18,
@@ -57,6 +62,11 @@ class FontDef {
     fontSize: 12,
     color: ColorManager.black,
   );
+  static const TextStyle w500S11Cb = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 11,
+    color: ColorManager.black,
+  );
   static const TextStyle w700S16Cw = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
@@ -66,6 +76,21 @@ class FontDef {
     fontWeight: FontWeight.w400,
     fontSize: 13,
     color: ColorManager.black,
+  );
+  static const TextStyle w600S9Cb = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 9,
+    color: ColorManager.black,
+  );
+  static const TextStyle w500S12Cb = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 12,
+    color: ColorManager.black,
+  );
+  static const TextStyle w500S12Cp = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 12,
+    color: ColorManager.primaryColor,
   );
   static const TextStyle w700S13Cb = TextStyle(
     fontWeight: FontWeight.w700,

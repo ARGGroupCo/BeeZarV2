@@ -18,8 +18,8 @@ class ResetPasswordScreen extends StatelessWidget {
     TextEditingController password = TextEditingController();
     TextEditingController rePassword = TextEditingController();
     return Scaffold(
-      appBar: appBarAuth(
-          () => Get.off(const LoginScreen()), "إعادة تعيين كلمة المرور"),
+      appBar: appBarAuth(() => Get.off(const LoginScreen()),
+          "إعادة تعيين كلمة المرور", context),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(left: 15, right: 15),

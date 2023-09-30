@@ -17,7 +17,7 @@ class OtpScreen extends StatelessWidget {
     String otpval = "";
     AuthController authController = Get.find();
     return Scaffold(
-      appBar: appBarAuth(() => Get.off(const ForgetPasswordScreen()), "العودة"),
+      appBar: appBarAuth(() => Get.back(), "العودة", context),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(left: 15, right: 15, top: 100),

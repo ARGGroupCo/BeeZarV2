@@ -18,7 +18,7 @@ class ForgetPasswordScreen extends StatelessWidget {
     AuthController authController = Get.find();
     TextEditingController email = TextEditingController();
     return Scaffold(
-      appBar: appBarAuth(() => Get.off(const LoginScreen()), "العودة"),
+      appBar: appBarAuth(() => Get.off(const LoginScreen()), "العودة", context),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(15),

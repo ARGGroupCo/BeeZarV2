@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 
 AppBar appBarRegister(BuildContext context) {
   return AppBar(
-    leading: const Text(""),
     automaticallyImplyLeading: false,
     toolbarHeight: 95,
     backgroundColor: Colors.transparent,
