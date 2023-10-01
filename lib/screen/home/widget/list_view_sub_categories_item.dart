@@ -45,7 +45,20 @@ class ListViewSubCategoriesItems extends StatelessWidget {
                                     ],
                                   ),
                                   Image.asset(
-                                      "lib/assets/images/Mercedes Benz.png"),
+                                    "lib/assets/images/Mercedes Benz.png",
+                                  ),
+                                  // InkWell(
+                                  //   onTap: () => Get.dialog(
+                                  //     Image.asset(
+                                  //       "lib/assets/images/Mercedes Benz.png",
+                                  //       height:
+                                  //           MediaQuery.sizeOf(context).height,
+                                  //       width: MediaQuery.sizeOf(context).width,
+                                  //     ),
+                                  //   ),
+                                  //   child: Image.asset(
+                                  //       "lib/assets/images/Mercedes Benz.png"),
+                                  // ),
                                 ],
                               )),
                           const Text(
