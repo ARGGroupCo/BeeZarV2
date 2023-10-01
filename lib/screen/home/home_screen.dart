@@ -1,6 +1,6 @@
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/screen/home/widget/item_show.dart';
 import 'package:beezer_v2/screen/home/widget/row_item_categories.dart';
-import 'package:beezer_v2/screen/home/widget/row_item_home.dart';
 import 'package:beezer_v2/screen/home/widget/row_show_all.dart';
 import 'package:beezer_v2/widget/app_bar_home.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
@@ -22,10 +22,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               RowShowAll(press: () {}, text: "الأقسام"),
               RowItemCategories(list: listCatogory),
-              RowShowAll(press: () {}, text: "الأكثر شهرة"),
-              RowItemHome(list: listfamest, sizeH: 160, sizeW: 125),
-              RowShowAll(press: () {}, text: "شوهد مؤخراً"),
-              RowItemHome(list: listLast, sizeH: 170, sizeW: 130),
+              const ItemShow(),
             ],
           ),
         ),
@@ -249,4 +246,6 @@ List<Widget> listLast = [
     ],
   ),
 ];
+
+
 //data for
