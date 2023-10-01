@@ -82,6 +82,11 @@ class FontDef {
     fontSize: 16,
     color: ColorManager.white,
   );
+  static const TextStyle w700S40Cw = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 40,
+    color: ColorManager.white,
+  );
   static const TextStyle w400S13Cb = TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 13,
