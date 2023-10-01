@@ -22,6 +22,7 @@ class HomeController extends GetxController {
   void cheangeCategory(int? num) {
     if (categore == num) {
       categore = null;
+      subCategory = "All";
     } else {
       categore = num;
     }
