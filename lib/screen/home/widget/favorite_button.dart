@@ -6,13 +6,16 @@ class FavoriteButton extends StatelessWidget {
   final void Function() press;
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 5,
-      right: 5,
-      child: IconButton(
-        onPressed: press,
-        icon: const Icon(Icons.favorite_border_outlined,
-            color: ColorManager.darkGrayIcon),
+    return IconButton(
+      onPressed: press,
+      icon: Container(
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: ColorManager.litePrimaryColor,
+        ),
+        child: const Icon(Icons.favorite_border_outlined,
+            color: ColorManager.primaryColor),
       ),
     );
   }

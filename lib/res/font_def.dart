@@ -107,14 +107,19 @@ class FontDef {
     fontSize: 12,
     color: ColorManager.primaryColor,
   );
-  static const TextStyle w700S13Cb = TextStyle(
-    fontWeight: FontWeight.w700,
-    fontSize: 13,
+  static const TextStyle w600S14Cb = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
     color: ColorManager.black,
   );
   static const TextStyle w700S13Cp = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 13,
     color: ColorManager.primaryColor,
+  );
+  static const TextStyle w700S13Cb = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 13,
+    color: ColorManager.black,
   );
 }

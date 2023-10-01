@@ -1,9 +1,7 @@
-import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/home_screen.dart';
-import 'package:beezer_v2/screen/home/widget/add_button_to_bascket.dart';
-import 'package:beezer_v2/screen/home/widget/favorite_button.dart';
 import 'package:beezer_v2/screen/home/widget/list_sub_categories.dart';
+import 'package:beezer_v2/screen/home/widget/list_view_sub_categories_item.dart';
 import 'package:beezer_v2/screen/home/widget/row_item_home.dart';
 import 'package:beezer_v2/screen/home/widget/row_show_all.dart';
 import 'package:flutter/material.dart';
@@ -34,35 +32,7 @@ class ItemShow extends StatelessWidget {
             children: [
               ListSubCategories(
                   list: homeController.listCategory[homeController.categore!]),
-              SizedBox(
-                height: 350,
-                child: ListView.builder(
-                  itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 350,
-                      width: 300,
-                      margin: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: ColorManager.white,
-                        boxShadow: const [
-                          BoxShadow(
-                              blurStyle: BlurStyle.inner,
-                              offset: Offset(0, 0),
-                              color: ColorManager.litePrimaryColor,
-                              spreadRadius: 3),
-                        ],
-                      ),
-                      child: Stack(children: [
-                        FavoriteButton(press: () {}),
-                        AddButtomToBascket(press: () {}),
-                      ]),
-                    );
-                  },
-                ),
-              )
+              const ListViewSubCategoriesItems(list: [])
             ],
           );
         }
