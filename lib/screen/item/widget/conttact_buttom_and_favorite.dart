@@ -2,9 +2,6 @@ import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/item/widget/cottact_with_user.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'package:url_launcher/url_launcher.dart';
 
 class ConttactButtomAndFavorite extends StatelessWidget {
   const ConttactButtomAndFavorite({
