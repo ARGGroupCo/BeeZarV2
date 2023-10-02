@@ -45,7 +45,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 ElevatedButtonDef(
                   press: () async {
                     if (formKey.currentState!.validate()) {
-                      if (password.text != rePassword) {
+                      if (password.text != rePassword.text) {
                         var res = await authController.restPassword(
                             oldPassword.text, password.text);
                         if (res) {

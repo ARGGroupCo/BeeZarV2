@@ -9,7 +9,7 @@ class FavoriteButton extends StatelessWidget {
     return IconButton(
       onPressed: press,
       icon: Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: ColorManager.litePrimaryColor,

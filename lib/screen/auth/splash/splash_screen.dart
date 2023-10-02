@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             );
           }
-          Timer(Duration(seconds: 1), () {
+          Timer(const Duration(seconds: 1), () {
             if (_authController.checkUser!) {
               Get.off(const HomeScreen());
             } else {
