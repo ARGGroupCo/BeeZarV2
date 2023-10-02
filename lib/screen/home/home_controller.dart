@@ -1,3 +1,4 @@
+import 'package:beezer_v2/screen/item/item_screen.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -32,5 +33,9 @@ class HomeController extends GetxController {
   void cheangeSubCategory(String sub) {
     subCategory = sub;
     update();
+  }
+
+  void toItem(String id) {
+    Get.to(ItemScreen(id: id));
   }
 }

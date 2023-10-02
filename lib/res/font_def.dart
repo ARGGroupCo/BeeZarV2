@@ -122,4 +122,14 @@ class FontDef {
     fontSize: 13,
     color: ColorManager.black,
   );
+  static const TextStyle w500S15Cb = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
+    color: ColorManager.black,
+  );
+  static const TextStyle w700S24Cw = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: ColorManager.white,
+  );
 }
