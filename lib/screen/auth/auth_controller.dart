@@ -1,11 +1,17 @@
+import 'dart:convert';
+import 'package:beezer_v2/model/login_user_model.dart';
 import 'package:beezer_v2/model/register_user_model.dart';
+import 'package:beezer_v2/model/user_model.dart';
+import 'package:beezer_v2/res/hostting.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
   bool remmberMy = true;
   bool? checkUser;
   RegisterUserModel registerUserModel = RegisterUserModel();
+  UserModel userModel = UserModel();
 
   @override
   void onInit() {
@@ -19,11 +25,38 @@ class AuthController extends GetxController {
   }
 
   Future<bool> login(String email, String password) async {
-    return true;
+    LoginUserModel user = LoginUserModel(email: email, password: password);
+    http.Response response = await http.post(Hostting.login,
+        body: user.toJson(), headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      final storeg = GetStorage();
+      var res = jsonDecode(response.body);
+      userModel = UserModel.fromJson(res["user"]);
+      storeg.write("token", res["token"]);
+      if (remmberMy) {
+        storeg.write("MyEmail", email);
+        storeg.write("MyPassword", password);
+      }
+      return true;
+    }
+    return false;
   }
 
   Future<bool> register() async {
-    return true;
+    http.Response response = await http.post(Hostting.register,
+        body: registerUserModel.toJson(), headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      final storeg = GetStorage();
+      var res = jsonDecode(response.body);
+      userModel = UserModel.fromJson(res["user"]);
+      storeg.write("token", res["token"]);
+      if (remmberMy) {
+        storeg.write("MyEmail", userModel.email);
+        storeg.write("MyPassword", registerUserModel.password);
+      }
+      return true;
+    }
+    return false;
   }
 
   Future<bool> forgetPassword(String email) async {
@@ -39,12 +72,16 @@ class AuthController extends GetxController {
   }
 
   Future<bool> checkToken() async {
-    var storage = GetStorage();
-    if (storage.read("Token") != null || storage.read("Token") != "") {
-      //تعليمة فحص التوكن ثم فحص اذا صح الذهاب الى الصفحة الرئيسية وإلا الى تسجيل الدخول
-      checkUser = false;
-      return true;
+    final storage = GetStorage();
+    if (storage.read("token") != null && storage.read("token") != "") {
+      http.Response response = await http.post(Hostting.checkTokenValidity,
+          headers: Hostting().getHeader());
+      if (response.statusCode == 200) {
+        checkUser = true;
+        return true;
+      }
     }
+    checkUser = false;
     return false;
   }
 }

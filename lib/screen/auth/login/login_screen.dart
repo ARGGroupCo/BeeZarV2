@@ -14,6 +14,7 @@ import 'package:beezer_v2/widget/text_form_field_def.dart';
 import 'package:beezer_v2/widget/text_form_field_password_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,8 +22,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.find();
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
+    var storeg = GetStorage();
+    TextEditingController email =
+        TextEditingController(text: storeg.read("MyEmail"));
+    TextEditingController password =
+        TextEditingController(text: storeg.read("MyPassword"));
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       bottomNavigationBar: const SVGBottomBar(),

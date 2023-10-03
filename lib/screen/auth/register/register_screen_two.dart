@@ -54,6 +54,8 @@ class RegisterScreenTwo extends StatelessWidget {
                   press: () async {
                     if (formKey.currentState!.validate()) {
                       if (password.text == rePassword.text) {
+                        authController.registerUserModel.password =
+                            password.text;
                         var res = await authController.register();
                         if (res) {
                           Get.to(const OtpScreen());

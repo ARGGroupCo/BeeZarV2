@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               RowShowAll(press: () {}, text: "الأقسام"),
-              RowItemCategories(list: listCatogory),
+              const RowItemCategories(),
               const ItemShow(),
             ],
           ),
@@ -32,68 +32,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 //data for test
-List<Widget> listCatogory = [
-  Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    //list widget
-    children: [
-      Image.asset(
-        "lib/assets/images/Red-Ford-Mustang-PNG-HD 1.png",
-        height: 50,
-        width: 50,
-      ),
-      const Text(
-        "Cars",
-        style: FontDef.w600S9Cb,
-      ),
-    ],
-  ),
-  Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    //list widget
-    children: [
-      Image.asset(
-        "lib/assets/images/pngwing 4.png",
-        height: 50,
-        width: 50,
-      ),
-      const Text(
-        "Smart phones",
-        style: FontDef.w600S9Cb,
-      ),
-    ],
-  ),
-  Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    //list widget
-    children: [
-      Image.asset(
-        "lib/assets/images/sofa.png",
-        height: 50,
-        width: 50,
-      ),
-      const Text(
-        "Furniture",
-        style: FontDef.w600S9Cb,
-      ),
-    ],
-  ),
-  Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    //list widget
-    children: [
-      Image.asset(
-        "lib/assets/images/My project (3) 1.png",
-        height: 50,
-        width: 50,
-      ),
-      const Text(
-        "Real estate",
-        style: FontDef.w600S9Cb,
-      ),
-    ],
-  ),
-];
 
 List<Widget> listfamest = [
   Column(

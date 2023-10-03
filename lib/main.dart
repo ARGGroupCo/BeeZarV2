@@ -1,13 +1,25 @@
+import 'dart:io';
+
 import 'package:beezer_v2/res/binding_def.dart';
-import 'package:beezer_v2/screen/home/home_screen.dart';
+import 'package:beezer_v2/screen/auth/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get_storage/get_storage.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() async {
   await GetStorage.init();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -27,7 +39,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       initialBinding: BindingDef(),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

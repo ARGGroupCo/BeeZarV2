@@ -32,4 +32,11 @@ class ValidatorDef {
     }
     return null;
   }
+
+  static String? validatorRegion(val) {
+    if (val == null || val.isEmpty) {
+      return "الرجاء اختيار منطقة ";
+    }
+    return null;
+  }
 }

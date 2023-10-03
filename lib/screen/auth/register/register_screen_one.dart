@@ -1,3 +1,4 @@
+import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/validator_def.dart';
 import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/login/login_screen.dart';
@@ -8,6 +9,8 @@ import 'package:beezer_v2/screen/auth/register/widget/row_number_screen_register
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
+import 'package:beezer_v2/widget/input_decration_def.dart';
+import 'package:beezer_v2/widget/list_region.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,11 +29,11 @@ class RegisterScreenOne extends StatelessWidget {
         TextEditingController(text: authController.registerUserModel.email);
     TextEditingController phone =
         TextEditingController(text: authController.registerUserModel.phone);
+
     return Scaffold(
       appBar: appBarRegister(context),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.sizeOf(context).height * 0.8,
           padding: const EdgeInsets.all(20),
           child: Form(
             key: formKay,
@@ -63,6 +66,18 @@ class RegisterScreenOne extends StatelessWidget {
                         validator: (val) {
                           return ValidatorDef.validatorPhone(val);
                         }),
+                    DropdownButtonFormField(
+                      padding: const EdgeInsets.only(top: 30),
+                      decoration: inputDecorationDef(null, "المحافظة"),
+                      isDense: true,
+                      borderRadius: BorderRadius.circular(30),
+                      value: authController.registerUserModel.address,
+                      items: listRegion,
+                      validator: (value) => ValidatorDef.validatorRegion(value),
+                      style: FontDef.w400S14Cg,
+                      onChanged: (value) =>
+                          authController.registerUserModel.address = value,
+                    )
                   ],
                 ),
                 Column(
