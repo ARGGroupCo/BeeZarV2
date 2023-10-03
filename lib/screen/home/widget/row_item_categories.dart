@@ -16,7 +16,7 @@ class RowItemCategories extends StatelessWidget {
     List<BoxShadow> shadow;
 
     return FutureBuilder(
-        future: homeController.getCategory(),
+        future: homeController.getCategoryAndSub(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -33,7 +33,8 @@ class RowItemCategories extends StatelessWidget {
                     init: homeController,
                     builder: (controller) {
                       if (controller.categore != null &&
-                          index != controller.categore) {
+                          controller.listGategoryModel[index].name !=
+                              controller.categore) {
                         color = Colors.transparent;
                         shadow = const [];
                       } else {
@@ -49,7 +50,8 @@ class RowItemCategories extends StatelessWidget {
                       }
                       return InkWell(
                         onTap: () {
-                          controller.cheangeCategory(index);
+                          controller.cheangeCategory(
+                              controller.listGategoryModel[index].name);
                         },
                         child: Container(
                           margin: const EdgeInsets.only(

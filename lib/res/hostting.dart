@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:get_storage/get_storage.dart';
 
 class Hostting {
@@ -24,4 +26,5 @@ class Hostting {
   static Uri register = Uri.parse("$api/signup");
   static Uri checkTokenValidity = Uri.parse("$api/check-token-validity");
   static Uri getCategory = Uri.parse("$api/get_category");
+  static Uri getSubCategory(int num) => Uri.parse("$api/get_sub_category/$num");
 }

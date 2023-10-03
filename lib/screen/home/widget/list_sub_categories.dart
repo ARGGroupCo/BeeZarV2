@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class ListSubCategories extends StatelessWidget {
   const ListSubCategories({
     super.key,
-    required this.list,
+    required this.gategory,
   });
-  final List<String> list;
+  final String gategory;
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
@@ -17,26 +17,29 @@ class ListSubCategories extends StatelessWidget {
       height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: list.length,
+        itemCount: homeController.listSubCategory[gategory]!.length,
         itemBuilder: (context, index) {
           bool cho = false;
-          if (list[index] == homeController.subCategory) {
+          if (homeController.listSubCategory[gategory]![index].name ==
+              homeController.subCategory) {
             cho = true;
           } else {
             cho = false;
           }
           return InkWell(
-            onTap: () => homeController.cheangeSubCategory(list[index]),
+            onTap: () => homeController.cheangeSubCategory(
+                homeController.listSubCategory[gategory]![index].name),
             child: Padding(
               padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: GetBuilder<HomeController>(
                   init: homeController,
                   builder: (controller) {
-                    if (list.length > 1) {
+                    if (gategory.length > 1) {
                       return Column(
                         children: [
                           Text(
-                            list[index],
+                            homeController
+                                .listSubCategory[gategory]![index].name,
                             style: !cho ? FontDef.w400S16Cg : FontDef.w400S16Cb,
                           ),
                           Visibility(

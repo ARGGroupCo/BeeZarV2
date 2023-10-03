@@ -30,8 +30,7 @@ class ItemShow extends StatelessWidget {
         } else {
           return Column(
             children: [
-              ListSubCategories(
-                  list: homeController.listCategory[homeController.categore!]),
+              ListSubCategories(gategory: controller.categore!),
               const ListViewSubCategoriesItems(list: [])
             ],
           );

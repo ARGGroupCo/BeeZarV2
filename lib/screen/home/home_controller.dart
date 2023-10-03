@@ -1,36 +1,24 @@
 import 'dart:convert';
 import 'package:beezer_v2/model/gategory_model.dart';
+import 'package:beezer_v2/model/sub_gategory_model.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/item/item_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  int? categore;
-  String subCategory = "All";
+  String? categore;
+  String subCategory = "الكل";
   List<GategoryModel> listGategoryModel = [];
-  List<List<String>> listCategory = [
-    [
-      "All",
-      "BMW",
-      "Mercedes",
-      "Audi",
-      "Gelle",
-      "Hyundai",
-      "Hound",
-      "Chevrolet"
-    ],
-    ["All", "Nokia", "Samsung", "ْXiaomi", "Iifinix", "Sony"],
-    ["All"],
-    ["All"],
-  ];
+  Map<String, List<SubCategoryModel>> listSubCategory = {};
 
-  void cheangeCategory(int? num) {
+  void cheangeCategory(String? num) {
     if (categore == num) {
       categore = null;
-      subCategory = "All";
+      subCategory = "الكل";
     } else {
       categore = num;
+      subCategory = "الكل";
     }
     update();
   }
@@ -44,17 +32,38 @@ class HomeController extends GetxController {
     Get.to(ItemScreen(id: id));
   }
 
-  Future<List<GategoryModel>> getCategory() async {
+  Future<List<SubCategoryModel>> getSubCategory(int num) async {
+    List<SubCategoryModel> listSub = [];
+    http.Response responseSub = await http.get(Hostting.getSubCategory(num),
+        headers: Hostting().getHeader());
+    if (responseSub.statusCode == 200) {
+      var bodySub = jsonDecode(responseSub.body);
+      listSub.add(
+          SubCategoryModel(iamge: null, id: -1, name: "الكل", categoryId: num));
+      for (var element in bodySub["subcategories"]) {
+        var sub = SubCategoryModel.fromJson(element);
+        listSub.add(sub);
+      }
+    }
+    return listSub;
+  }
+
+  Future<List<GategoryModel>> getCategoryAndSub() async {
     if (listGategoryModel.isEmpty) {
       http.Response response =
           await http.get(Hostting.getCategory, headers: Hostting().getHeader());
       if (response.statusCode == 200) {
-        List<GategoryModel> list = [];
         var body = jsonDecode(response.body);
         for (var element in body["categories"]) {
-          list.add(GategoryModel.fromJson(element));
+          var gate = GategoryModel.fromJson(element);
+          listGategoryModel.add(gate);
+          var sub = await getSubCategory(gate.id);
+          listSubCategory.addIf(
+            !listSubCategory.containsKey(gate.name),
+            gate.name,
+            sub,
+          );
         }
-        listGategoryModel = list;
       }
     }
     return listGategoryModel;
