@@ -1,30 +1,27 @@
+import 'package:beezer_v2/model/item_model.dart';
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/widget/add_button_to_bascket.dart';
-import 'package:beezer_v2/screen/home/widget/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ListViewSubCategoriesItems extends StatelessWidget {
   const ListViewSubCategoriesItems({super.key, required this.list});
-  final List list;
+  final List<ItemModel> list;
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
     return SizedBox(
       height: 350,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: homeController.itemModelShearch.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return InkWell(
-            //
-            //
-            //صلح خطأ الانديكس حط محلو معرف العنصر
-            //
-            //
-            onTap: () => homeController.toItem(index),
+            onTap: () =>
+                homeController.toItem(homeController.itemModelShearch[index]),
             child: SizedBox(
               width: 300,
               child: Card(
@@ -48,32 +45,23 @@ class ListViewSubCategoriesItems extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        FavoriteButton(press: () {}),
-                                      ],
-                                    ),
-                                    Image.asset(
-                                      "lib/assets/images/Mercedes Benz.png",
-                                    ),
-                                    // InkWell(
-                                    //   onTap: () => Get.dialog(
-                                    //     Image.asset(
-                                    //       "lib/assets/images/Mercedes Benz.png",
-                                    //       height:
-                                    //           MediaQuery.sizeOf(context).height,
-                                    //       width: MediaQuery.sizeOf(context).width,
-                                    //     ),
-                                    //   ),
-                                    //   child: Image.asset(
-                                    //       "lib/assets/images/Mercedes Benz.png"),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.start,
+                                    //   children: [
+                                    //     FavoriteButton(press: () {}),
+                                    //   ],
                                     // ),
+                                    Image.network(
+                                      "${Hostting.imageItem}/${list[index].images![0]}",
+                                      height: 200,
+                                      width: 250,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ],
                                 )),
-                            const Text(
-                              "Mercedes Benz S550",
+                            Text(
+                              list[index].name,
                               style: FontDef.w600S14Cb,
                             ),
                           ],
@@ -85,9 +73,9 @@ class ListViewSubCategoriesItems extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AddButtomToBascket(press: () {}),
-                            const Text(
-                              "\$74.000",
+                            AddButtomToFavorite(press: () {}),
+                            Text(
+                              list[index].price.toString(),
                               style: FontDef.w600S14Cb,
                             ),
                           ],

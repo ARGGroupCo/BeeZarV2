@@ -10,8 +10,13 @@ import 'package:get/get.dart';
 class ItemInfoAndButtomScroll extends StatelessWidget {
   const ItemInfoAndButtomScroll({
     super.key,
+    required this.number,
+    required this.descrption,
+    required this.name,
   });
-
+  final int number;
+  final String name;
+  final String descrption;
   @override
   Widget build(BuildContext context) {
     ItemController itemController = Get.find();
@@ -24,13 +29,13 @@ class ItemInfoAndButtomScroll extends StatelessWidget {
               const ArrowButtom(isleft: true, show: true),
               Column(
                 children: [
-                  const Text("Mercedes BenzS550", style: FontDef.w500S15Cb),
+                  Text(name, style: FontDef.w500S15Cb),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width - 50,
                     child: TextButton(
                       onPressed: () => infoDialog(),
-                      child: const Text(
-                        "The Mercedes-Benz S-Class enjoys a spot year after year solidly near the top of the automotive heap. It’s simply a top tier machine that epitomizes what drivers think of as the “luxury segment.”Read more....",
+                      child: Text(
+                        descrption,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: FontDef.w400S14Cg,
@@ -39,7 +44,7 @@ class ItemInfoAndButtomScroll extends StatelessWidget {
                   ),
                   DotsIndicator(
                     reversed: false,
-                    dotsCount: itemController.listImage.length,
+                    dotsCount: number,
                     position: itemController.pagenum,
                     decorator: DotsDecorator(
                       activeColor: ColorManager.primaryColor,

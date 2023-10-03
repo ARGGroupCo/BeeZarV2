@@ -1,8 +1,8 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:flutter/material.dart';
 
-class AddButtomToBascket extends StatelessWidget {
-  const AddButtomToBascket({
+class AddButtomToFavorite extends StatelessWidget {
+  const AddButtomToFavorite({
     super.key,
     required this.press,
   });
@@ -27,7 +27,7 @@ class AddButtomToBascket extends StatelessWidget {
               ),
               child: const Center(
                 child: Icon(
-                  Icons.shopping_cart_outlined,
+                  Icons.favorite_border_outlined,
                   size: 30,
                   color: ColorManager.white,
                 ),

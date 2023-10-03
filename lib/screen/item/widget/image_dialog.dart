@@ -1,10 +1,11 @@
 import 'package:beezer_v2/res/color_manager.dart';
+import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/item/item_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Future<dynamic> imageDialog(
-    BuildContext context, ItemController itemController) {
+    BuildContext context, ItemController itemController, List<String> images) {
   return Get.dialog(
       SizedBox(
         width: MediaQuery.sizeOf(context).width,
@@ -12,10 +13,10 @@ Future<dynamic> imageDialog(
         child: PageView.builder(
           controller: itemController.pageController,
           scrollDirection: Axis.horizontal,
-          itemCount: itemController.listImage.length,
+          itemCount: images.length,
           itemBuilder: (context, index) {
-            return Image.asset(
-              itemController.listImage[index],
+            return Image.network(
+              "${Hostting.imageItem}/${images[index]}",
             );
           },
         ),

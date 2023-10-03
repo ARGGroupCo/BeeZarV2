@@ -3,37 +3,44 @@ import 'package:flutter/material.dart';
 class InfoUserContact extends StatelessWidget {
   const InfoUserContact({
     super.key,
+    required this.address,
+    required this.username,
+    required this.phone,
+    required this.price,
   });
-
+  final String address;
+  final String username;
+  final String phone;
+  final String price;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 20, right: 20),
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.location_on_outlined),
-              Text("الرقة"),
+              const Icon(Icons.location_on_outlined),
+              Text(address),
             ],
           ),
           Row(
             children: [
-              Icon(Icons.person_outline_outlined),
-              Text("name last"),
+              const Icon(Icons.person_outline_outlined),
+              Text(username),
             ],
           ),
           Row(
             children: [
-              Icon(Icons.phone_android_outlined),
-              Text("0956108642"),
+              const Icon(Icons.phone_android_outlined),
+              Text(phone),
             ],
           ),
           Row(
             children: [
-              Icon(Icons.email_outlined),
-              Text("the.lost.admiral@gmail.com"),
+              const Icon(Icons.attach_money),
+              Text(price),
             ],
           ),
         ],

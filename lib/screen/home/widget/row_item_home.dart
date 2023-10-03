@@ -42,7 +42,7 @@ class RowItemHome extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () => homeController
-                            .toItem(homeController.itemModelShearch[index].id),
+                            .toItem(homeController.itemModelShearch[index]),
                         child: Container(
                           margin: const EdgeInsets.only(
                               left: 10, top: 5, bottom: 5, right: 5),

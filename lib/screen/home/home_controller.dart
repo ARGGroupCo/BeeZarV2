@@ -34,8 +34,8 @@ class HomeController extends GetxController {
     update();
   }
 
-  void toItem(int id) {
-    Get.to(ItemScreen(id: id));
+  void toItem(ItemModel itemModel) {
+    Get.to(ItemScreen(item: itemModel));
   }
 
   void searchItem() {
@@ -49,11 +49,12 @@ class HomeController extends GetxController {
           .where((element) => element.categoryId == categore)
           .toList();
     }
-    if (subCategory != -1) {
+    if (subCategory != -1 && subCategory != null) {
       itemModelShearch = itemModelShearch
           .where((element) => element.subCategoryId == subCategory)
           .toList();
     }
+    update();
   }
 
   Future<List<SubCategoryModel>> getSubCategory(int num) async {
@@ -93,8 +94,8 @@ class HomeController extends GetxController {
     return listGategoryModel;
   }
 
-  Future<List<ItemModel>> getAllItems(bool update) async {
-    if (itemModelAll.isEmpty || update) {
+  Future<List<ItemModel>> getAllItems(bool updateData) async {
+    if (itemModelAll.isEmpty || updateData) {
       http.Response response =
           await http.get(Hostting.getItems, headers: Hostting().getHeader());
       if (response.statusCode == 200) {
@@ -105,6 +106,7 @@ class HomeController extends GetxController {
         }
         itemModelAll = list;
         itemModelShearch = list;
+        update();
         return list;
       }
     }

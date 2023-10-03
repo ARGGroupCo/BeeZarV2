@@ -1,3 +1,4 @@
+import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/item/item_controller.dart';
 import 'package:beezer_v2/screen/item/widget/image_dialog.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:get/get.dart';
 class PageBuilderImage extends StatelessWidget {
   const PageBuilderImage({
     super.key,
+    required this.images,
   });
+  final List<String> images;
   @override
   Widget build(BuildContext context) {
     ItemController itemController = Get.find();
@@ -21,11 +24,11 @@ class PageBuilderImage extends StatelessWidget {
         controller: itemController.pageController,
         scrollDirection: Axis.horizontal,
         padEnds: true,
-        itemCount: itemController.listImage.length,
+        itemCount: images.length,
         itemBuilder: (context, index) {
           return InkWell(
-              onTap: () => imageDialog(context, itemController),
-              child: Image.asset(itemController.listImage[index]));
+              onTap: () => imageDialog(context, itemController, images),
+              child: Image.network("${Hostting.imageItem}/${images[index]}"));
         },
       ),
     );
