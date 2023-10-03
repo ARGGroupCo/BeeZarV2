@@ -1,5 +1,4 @@
 import 'package:beezer_v2/screen/home/home_controller.dart';
-import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/screen/home/widget/list_sub_categories.dart';
 import 'package:beezer_v2/screen/home/widget/list_view_sub_categories_item.dart';
 import 'package:beezer_v2/screen/home/widget/row_item_home.dart';
@@ -21,10 +20,16 @@ class ItemShow extends StatelessWidget {
         if (controller.categore == null) {
           return Column(
             children: [
-              RowShowAll(press: () {}, text: "الأكثر شهرة"),
-              RowItemHome(list: listfamest, sizeH: 160, sizeW: 125),
+              RowShowAll(press: () {}, text: "المضافة حديثاً"),
+              RowItemHome(
+                  future: homeController.getAllItems(false),
+                  sizeH: 160,
+                  sizeW: 125),
               RowShowAll(press: () {}, text: "شوهد مؤخراً"),
-              RowItemHome(list: listLast, sizeH: 170, sizeW: 130),
+              RowItemHome(
+                  future: homeController.getAllItems(false),
+                  sizeH: 170,
+                  sizeW: 130),
             ],
           );
         } else {

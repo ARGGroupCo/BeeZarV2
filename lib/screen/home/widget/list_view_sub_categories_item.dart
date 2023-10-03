@@ -19,7 +19,12 @@ class ListViewSubCategoriesItems extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () => homeController.toItem('id'),
+            //
+            //
+            //صلح خطأ الانديكس حط محلو معرف العنصر
+            //
+            //
+            onTap: () => homeController.toItem(index),
             child: SizedBox(
               width: 300,
               child: Card(

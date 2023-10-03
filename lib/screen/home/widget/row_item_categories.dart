@@ -33,7 +33,7 @@ class RowItemCategories extends StatelessWidget {
                     init: homeController,
                     builder: (controller) {
                       if (controller.categore != null &&
-                          controller.listGategoryModel[index].name !=
+                          controller.listGategoryModel[index].id !=
                               controller.categore) {
                         color = Colors.transparent;
                         shadow = const [];
@@ -51,7 +51,7 @@ class RowItemCategories extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           controller.cheangeCategory(
-                              controller.listGategoryModel[index].name);
+                              controller.listGategoryModel[index].id);
                         },
                         child: Container(
                           margin: const EdgeInsets.only(
@@ -68,7 +68,7 @@ class RowItemCategories extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.network(
-                                '${Hostting.image}/${snapshot.data![index].image}',
+                                '${Hostting.imageCategory}/${snapshot.data![index].image}',
                                 height: 50,
                                 width: 50,
                               ),

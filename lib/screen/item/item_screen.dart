@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class ItemScreen extends StatelessWidget {
   const ItemScreen({super.key, required this.id});
-  final String id;
+  final int id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

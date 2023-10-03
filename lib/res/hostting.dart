@@ -4,7 +4,7 @@ class Hostting {
   var storeg = GetStorage();
   static const String host = "https://beezar.arg-tr.com";
   static const String api = "$host/api";
-  static const String image = "$host/public";
+
   //hrader
   Map<String, String> getHeader() {
     var token = storeg.read("token");
@@ -19,10 +19,15 @@ class Hostting {
     };
   }
 
+  //images
+  static const String imageCategory = "$host/public";
+  static const String imageItem = "$host/items";
+
   //api
   static Uri login = Uri.parse("$api/login");
   static Uri register = Uri.parse("$api/signup");
   static Uri checkTokenValidity = Uri.parse("$api/check-token-validity");
   static Uri getCategory = Uri.parse("$api/get_category");
   static Uri getSubCategory(int num) => Uri.parse("$api/get_sub_category/$num");
+  static Uri getItems = Uri.parse("$api/get_all_items");
 }

@@ -9,18 +9,22 @@ class ListSubCategories extends StatelessWidget {
     super.key,
     required this.gategory,
   });
-  final String gategory;
+  final int? gategory;
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
+    String cat = homeController.listGategoryModel
+        .where((element) => element.id == gategory)
+        .first
+        .name;
     return SizedBox(
       height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: homeController.listSubCategory[gategory]!.length,
+        itemCount: homeController.listSubCategory[cat]!.length,
         itemBuilder: (context, index) {
           bool cho = false;
-          if (homeController.listSubCategory[gategory]![index].name ==
+          if (homeController.listSubCategory[cat]![index].id ==
               homeController.subCategory) {
             cho = true;
           } else {
@@ -28,18 +32,17 @@ class ListSubCategories extends StatelessWidget {
           }
           return InkWell(
             onTap: () => homeController.cheangeSubCategory(
-                homeController.listSubCategory[gategory]![index].name),
+                homeController.listSubCategory[cat]![index].id),
             child: Padding(
               padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: GetBuilder<HomeController>(
                   init: homeController,
                   builder: (controller) {
-                    if (gategory.length > 1) {
+                    if (homeController.listSubCategory[cat]!.isNotEmpty) {
                       return Column(
                         children: [
                           Text(
-                            homeController
-                                .listSubCategory[gategory]![index].name,
+                            homeController.listSubCategory[cat]![index].name,
                             style: !cho ? FontDef.w400S16Cg : FontDef.w400S16Cb,
                           ),
                           Visibility(
