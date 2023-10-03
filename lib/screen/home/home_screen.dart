@@ -13,29 +13,33 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    return Scaffold(
-      appBar: appBarHome(context),
-      bottomNavigationBar: const BottomNavigationBarDef(),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
-        child: RefreshIndicator(
-          onRefresh: () async {
-            homeController.getAllItems(true);
-            homeController.update();
-          },
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                RowShowAll(press: () {}, text: "الأقسام"),
-                const RowItemCategories(),
-                const ItemShow(),
-              ],
+    return GetBuilder<HomeController>(
+        init: homeController,
+        builder: (controller) {
+          return Scaffold(
+            appBar: appBarHome(context),
+            bottomNavigationBar: const BottomNavigationBarDef(),
+            body: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  homeController.getAllItems(true);
+                  homeController.update();
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      RowShowAll(press: () {}, text: "الأقسام"),
+                      const RowItemCategories(),
+                      const ItemShow(),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }

@@ -1,9 +1,20 @@
 import 'package:beezer_v2/res/color_manager.dart';
+import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/screen/home/home_controller.dart';
+import 'package:beezer_v2/screen/item/item_screen.dart';
 import 'package:beezer_v2/widget/drop_down_buttom_def.dart';
+import 'package:beezer_v2/widget/input_decration_def.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 AppBar appBarHome(BuildContext context) {
-  TextEditingController search = TextEditingController();
+  HomeController homeController = Get.find();
+  List<String> list = [];
+  for (var element in homeController.itemModelAll) {
+    list.add("${element.id} - الاسم:${element.name}");
+  }
+  homeController.update();
   return AppBar(
     toolbarHeight: 75,
     backgroundColor: Colors.transparent,
@@ -15,24 +26,37 @@ AppBar appBarHome(BuildContext context) {
         SizedBox(
           height: 25,
           width: MediaQuery.sizeOf(context).width * 0.65,
-          child: TextField(
-            controller: search,
-            style: const TextStyle(fontSize: 10, height: 1),
-            decoration: const InputDecoration(
-              hintText: "بحث",
-              prefixIcon: Icon(Icons.search),
-              prefixIconColor: ColorManager.grayText,
-              isDense: true,
-              contentPadding: EdgeInsets.all(8),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorManager.black, width: 1),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorManager.black, width: 1),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+          child: DropdownSearch<String>(
+            popupProps: PopupProps.menu(
+              searchFieldProps: TextFieldProps(
+                  style: FontDef.w400S13Cb,
+                  padding: const EdgeInsets.all(10),
+                  decoration: inputDecorationDef(Icons.search, "بحث")),
+              showSearchBox: true,
+            ),
+            dropdownDecoratorProps: const DropDownDecoratorProps(
+              dropdownSearchDecoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide: BorderSide(color: ColorManager.primaryColor)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderSide: BorderSide(color: ColorManager.primaryColor)),
+                hintText: "بحث",
+                hintStyle: FontDef.w700S13Cp,
+                isDense: true,
+                prefixIcon:
+                    Icon(Icons.search, color: ColorManager.primaryColor),
               ),
             ),
+            items: list,
+            onChanged: (value) {
+              int id = int.parse(value!.substring(0, value.indexOf("-") - 1));
+              var item = homeController.itemModelAll
+                  .where((element) => element.id == id)
+                  .first;
+              Get.to(ItemScreen(item: item));
+            },
           ),
         ),
       ],
