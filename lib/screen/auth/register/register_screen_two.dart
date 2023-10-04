@@ -7,6 +7,7 @@ import 'package:beezer_v2/screen/auth/register/widget/row_number_screen_register
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
+import 'package:beezer_v2/widget/progress_def.dart';
 import 'package:beezer_v2/widget/text_form_field_password_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,6 +54,7 @@ class RegisterScreenTwo extends StatelessWidget {
                 ElevatedButtonDef(
                   press: () async {
                     if (formKey.currentState!.validate()) {
+                      progressDef();
                       if (password.text == rePassword.text) {
                         authController.registerUserModel.password =
                             password.text;

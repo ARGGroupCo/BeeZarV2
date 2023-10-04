@@ -25,7 +25,12 @@ class ItemShow extends StatelessWidget {
                   future: homeController.getAllItems(false),
                   sizeH: 160,
                   sizeW: 125),
-              RowShowAll(press: () {}, text: "شوهد مؤخراً"),
+              RowShowAll(press: () {}, text: "المفضلة"),
+              //
+              //
+              //استبدال بتعليمات جلب المفضلة
+              //
+              //
               RowItemHome(
                   future: homeController.getAllItems(false),
                   sizeH: 170,

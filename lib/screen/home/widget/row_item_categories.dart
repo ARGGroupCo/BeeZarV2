@@ -2,6 +2,7 @@ import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
+import 'package:beezer_v2/widget/progress_home_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,9 +20,7 @@ class RowItemCategories extends StatelessWidget {
         future: homeController.getCategoryAndSub(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const ProgressHomeRow();
           }
           return SizedBox(
             height: 100,

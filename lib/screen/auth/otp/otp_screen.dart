@@ -3,6 +3,7 @@ import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/home/home_screen.dart';
 import 'package:beezer_v2/widget/app_bar_auth.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
+import 'package:beezer_v2/widget/progress_def.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
@@ -49,6 +50,7 @@ class OtpScreen extends StatelessWidget {
               ElevatedButtonDef(
                 press: () async {
                   if (otpval.length == 6) {
+                    progressDef();
                     var res = await authController.sendOTP(otpval);
                     if (res) {
                       Get.offAll(const HomeScreen());

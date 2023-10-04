@@ -106,7 +106,6 @@ class HomeController extends GetxController {
         }
         itemModelAll = list;
         itemModelShearch = list;
-        update();
         return list;
       }
     }

@@ -2,6 +2,7 @@ import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
+import 'package:beezer_v2/widget/progress_home_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,9 +25,7 @@ class RowItemHome extends StatelessWidget {
             return SizedBox(
               height: sizeH,
               width: sizeW,
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: const ProgressHomeRow(),
             );
           }
           return SizedBox(

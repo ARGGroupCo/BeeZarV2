@@ -5,6 +5,7 @@ import 'package:beezer_v2/widget/app_bar_auth.dart';
 import 'package:beezer_v2/screen/auth/login/login_screen.dart';
 import 'package:beezer_v2/screen/auth/otp/otp_screen.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
+import 'package:beezer_v2/widget/progress_def.dart';
 import 'package:beezer_v2/widget/text_form_field_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,6 +46,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ElevatedButtonDef(
                   press: () async {
                     if (formKey.currentState!.validate()) {
+                      progressDef();
                       bool sendmessage =
                           await authController.forgetPassword(email.text);
                       if (sendmessage) {
