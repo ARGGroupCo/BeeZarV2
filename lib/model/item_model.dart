@@ -6,22 +6,23 @@ class ItemModel {
   late double price;
   late String address;
   late String phone;
-  late int categoryId;
-  late int subCategoryId;
+  late int? categoryId;
+  late int? subCategoryId;
   late List<String>? images;
+  late bool favorite;
 
-  ItemModel({
-    required this.address,
-    required this.categoryId,
-    required this.description,
-    required this.id,
-    required this.images,
-    required this.name,
-    required this.phone,
-    required this.price,
-    required this.subCategoryId,
-    required this.username,
-  });
+  ItemModel(
+      {required this.address,
+      required this.categoryId,
+      required this.description,
+      required this.id,
+      required this.images,
+      required this.name,
+      required this.phone,
+      required this.price,
+      required this.subCategoryId,
+      required this.username,
+      required this.favorite});
 
   factory ItemModel.fromJson(Map<String, dynamic> json) {
     List<String> imas = [];
@@ -39,6 +40,7 @@ class ItemModel {
       phone: json["number_user"],
       price: double.parse(json["price"].toString()),
       subCategoryId: json["sub_category_id"],
+      favorite: false,
     );
   }
 }

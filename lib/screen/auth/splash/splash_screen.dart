@@ -43,9 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
           }
           Timer(const Duration(seconds: 3), () {
             if (_authController.checkUser!) {
-              Get.off(const PrimerScreen());
+              Get.offAll(const PrimerScreen());
             } else {
-              Get.off(const LoginScreen());
+              Get.offAll(const LoginScreen());
             }
           });
           return Center(

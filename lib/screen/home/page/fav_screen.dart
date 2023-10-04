@@ -16,10 +16,6 @@ class FavScreen extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       child: ListView.builder(
-        //
-        //
-        //
-        //
         itemCount: 3,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
@@ -40,10 +36,6 @@ class FavScreen extends StatelessWidget {
                     )
                   ];
                 }
-                //
-                //
-                //
-                //
                 return listFav[index];
               });
         },

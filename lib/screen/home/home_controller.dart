@@ -19,6 +19,14 @@ class HomeController extends GetxController {
   PageController pageController = PageController();
   int pageNumber = 0;
 
+  @override
+  void onInit() async {
+    await getCategoryAndSub();
+    await getAllItems(false);
+    await getFavourite(null);
+    super.onInit();
+  }
+
   void cheangePage(int number) {
     pageNumber = number;
     pageController.jumpToPage(number);
@@ -118,6 +126,39 @@ class HomeController extends GetxController {
         return list;
       }
     }
-    return List.empty();
+    return itemModelShearch;
+  }
+
+  Future<List<ItemModel>> getFavourite(ItemModel? itemModel) async {
+    if (itemModel == null) {
+      http.Response response = await http.post(Hostting.getFavourite,
+          headers: Hostting().getHeader());
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
+        if (body["favorite_items"] != null) {
+          for (var element in body["favorite_items"]) {
+            var i = itemModelAll.indexOf(ItemModel.fromJson(element));
+            itemModelAll[i].favorite = true;
+          }
+        }
+      }
+    } else {
+      var i = itemModelAll.indexOf(itemModel);
+      itemModelAll[i].favorite = !itemModelAll[i].favorite;
+    }
+    return itemModelAll.where((element) => element.favorite).toList();
+  }
+
+  Future<bool> addDeleteFavourite(ItemModel item) async {
+    http.Response response = await http.post(
+        Hostting.addDeleteFavourite(item.id),
+        headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      var i = itemModelAll.indexOf(item);
+      itemModelAll[i].favorite = !itemModelAll[i].favorite;
+      // update();
+      return true;
+    }
+    return false;
   }
 }

@@ -14,7 +14,7 @@ AppBar appBarHome(BuildContext context) {
   for (var element in homeController.itemModelAll) {
     list.add("${element.id} - الاسم:${element.name}");
   }
-  //homeController.update();
+  homeController.update();
   return AppBar(
     toolbarHeight: 75,
     backgroundColor: Colors.transparent,

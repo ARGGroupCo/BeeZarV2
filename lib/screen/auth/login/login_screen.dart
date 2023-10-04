@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                             var res = await authController.login(
                                 email.text, password.text);
                             if (res) {
-                              Get.off(const PrimerScreen());
+                              Get.offAll(const PrimerScreen());
                             } else {
                               Get.snackbar("خطأ",
                                   "تم ادخال اسم المستخدم او كلمة المرور بشكل خاطئ");

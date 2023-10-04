@@ -30,4 +30,7 @@ class Hostting {
   static Uri getCategory = Uri.parse("$api/get_category");
   static Uri getSubCategory(int num) => Uri.parse("$api/get_sub_category/$num");
   static Uri getItems = Uri.parse("$api/get_all_items");
+  static Uri getFavourite = Uri.parse("$api/get_item_in my favourite");
+  static Uri addDeleteFavourite(int id) =>
+      Uri.parse("$api/add&delete_for_favourite/$id");
 }
