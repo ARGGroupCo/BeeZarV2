@@ -47,14 +47,6 @@ class ListViewSubCategoriesItems extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Column(
                                   children: [
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.start,
-                                    //   children: [
-                                    //     FavoriteButton(press: () {}),
-                                    //   ],
-                                    // ),
-
                                     CachedNetworkImage(
                                       imageUrl:
                                           "${Hostting.imageItem}/${list[index].images![0]}",

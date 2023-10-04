@@ -3,6 +3,7 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/widget/progress_home_row.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -64,8 +65,13 @@ class RowItemHome extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             //list widget
                             children: [
-                              Image.network(
-                                "${Hostting.imageItem}/${controller.itemModelShearch[index].images![0]}",
+                              CachedNetworkImage(
+                                imageUrl:
+                                    "${Hostting.imageItem}/${controller.itemModelShearch[index].images![0]}",
+                                placeholder: (context, url) =>
+                                    const ProgressHomeRow(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: sizeH - 70,
                                 width: sizeW - 30,
                                 fit: BoxFit.fill,

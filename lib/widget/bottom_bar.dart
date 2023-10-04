@@ -1,66 +1,52 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class BottomNavigationBarDef extends StatefulWidget {
+class BottomNavigationBarDef extends StatelessWidget {
   const BottomNavigationBarDef({
     super.key,
   });
-
-  @override
-  State<BottomNavigationBarDef> createState() => _BottomNavigationBarDefState();
-}
-
-int _check = 1;
-
-class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = HomeController();
-    return Container(
-      color: const Color.fromARGB(10, 0, 0, 0),
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButtomBarDef(
-            icon: Icons.home_outlined,
-            order: 1,
-            check: _check,
-            press: () => setState(() {
-              _check = 1;
-              homeController.pageController.jumpTo(0);
-            }),
+    HomeController homeController = Get.find();
+    return GetBuilder<HomeController>(
+      init: homeController,
+      builder: (controller) {
+        return Container(
+          color: const Color.fromARGB(10, 0, 0, 0),
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButtomBarDef(
+                icon: Icons.home_outlined,
+                order: 0,
+                check: controller.pageNumber,
+                press: () => controller.cheangePage(0),
+              ),
+              IconButtomBarDef(
+                icon: Icons.shopping_bag_outlined,
+                order: 1,
+                check: controller.pageNumber,
+                press: () => controller.cheangePage(1),
+              ),
+              IconButtomBarDef(
+                icon: Icons.favorite_border,
+                order: 2,
+                check: controller.pageNumber,
+                press: () => controller.cheangePage(2),
+              ),
+              IconButtomBarDef(
+                icon: Icons.person_outline_outlined,
+                order: 3,
+                check: controller.pageNumber,
+                press: () => controller.cheangePage(3),
+              ),
+            ],
           ),
-          IconButtomBarDef(
-            icon: Icons.shopping_bag_outlined,
-            order: 2,
-            check: _check,
-            press: () => setState(() {
-              _check = 2;
-              homeController.pageController.jumpTo(1);
-            }),
-          ),
-          IconButtomBarDef(
-            icon: Icons.favorite_border,
-            order: 3,
-            check: _check,
-            press: () => setState(() {
-              _check = 3;
-              homeController.pageController.jumpTo(3);
-            }),
-          ),
-          IconButtomBarDef(
-            icon: Icons.person_outline_outlined,
-            order: 4,
-            check: _check,
-            press: () => setState(() {
-              _check = 4;
-              homeController.pageController.jumpTo(4);
-            }),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

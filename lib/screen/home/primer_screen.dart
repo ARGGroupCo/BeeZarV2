@@ -19,8 +19,8 @@ class PrimerScreen extends StatelessWidget {
             appBar: appBarHome(context),
             bottomNavigationBar: const BottomNavigationBarDef(),
             body: PageView.builder(
+              itemCount: page.length,
               controller: homeController.pageController,
-              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return page[index];
               },

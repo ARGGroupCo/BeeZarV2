@@ -1,8 +1,6 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/favorite/fav_controller.dart';
-import 'package:beezer_v2/widget/app_bar_home.dart';
-import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,45 +13,42 @@ class FavScreen extends StatelessWidget {
     Color color;
     // ignore: unused_local_variable
     List<BoxShadow> shadow;
-    return Scaffold(
-        appBar: appBarHome(context),
-        bottomNavigationBar: const BottomNavigationBarDef(),
-        body: SizedBox(
-          height: double.infinity,
-          child: ListView.builder(
-            //
-            //
-            //
-            //
-            itemCount: 3,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return GetBuilder<FavController>(
-                  init: favController,
-                  builder: (controller) {
-                    if (controller.fav != null && index != controller.fav) {
-                      color = Colors.transparent;
-                      shadow = const [];
-                    } else {
-                      color = ColorManager.white;
-                      shadow = const [
-                        BoxShadow(
-                          color: ColorManager.litePrimaryColor,
-                          offset: Offset(1, 2),
-                          blurStyle: BlurStyle.normal,
-                          blurRadius: 1,
-                        )
-                      ];
-                    }
-                    //
-                    //
-                    //
-                    //
-                    return listFav[index];
-                  });
-            },
-          ),
-        ));
+    return SizedBox(
+      height: double.infinity,
+      child: ListView.builder(
+        //
+        //
+        //
+        //
+        itemCount: 3,
+        scrollDirection: Axis.vertical,
+        itemBuilder: (context, index) {
+          return GetBuilder<FavController>(
+              init: favController,
+              builder: (controller) {
+                if (controller.fav != null && index != controller.fav) {
+                  color = Colors.transparent;
+                  shadow = const [];
+                } else {
+                  color = ColorManager.white;
+                  shadow = const [
+                    BoxShadow(
+                      color: ColorManager.litePrimaryColor,
+                      offset: Offset(1, 2),
+                      blurStyle: BlurStyle.normal,
+                      blurRadius: 1,
+                    )
+                  ];
+                }
+                //
+                //
+                //
+                //
+                return listFav[index];
+              });
+        },
+      ),
+    );
   }
 }
 

@@ -17,6 +17,13 @@ class HomeController extends GetxController {
   List<ItemModel> itemModelAll = [];
   List<ItemModel> itemModelShearch = [];
   PageController pageController = PageController();
+  int pageNumber = 0;
+
+  void cheangePage(int number) {
+    pageNumber = number;
+    pageController.jumpToPage(number);
+    update();
+  }
 
   void cheangeCategory(int? num) {
     if (categore == num) {
