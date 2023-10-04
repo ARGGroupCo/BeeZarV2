@@ -32,7 +32,7 @@ class PrimerScreen extends StatelessWidget {
 
 List<Widget> page = [
   const HomeScreen(),
-  const FavScreen(),
   Container(),
+  const FavScreen(),
   Container(),
 ];
