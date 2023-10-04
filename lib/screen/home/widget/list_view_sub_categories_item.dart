@@ -4,6 +4,8 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/widget/add_button_to_bascket.dart';
+import 'package:beezer_v2/widget/progress_home_row.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,8 +54,14 @@ class ListViewSubCategoriesItems extends StatelessWidget {
                                     //     FavoriteButton(press: () {}),
                                     //   ],
                                     // ),
-                                    Image.network(
-                                      "${Hostting.imageItem}/${list[index].images![0]}",
+
+                                    CachedNetworkImage(
+                                      imageUrl:
+                                          "${Hostting.imageItem}/${list[index].images![0]}",
+                                      placeholder: (context, url) =>
+                                          const ProgressHomeRow(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                       height: 200,
                                       width: 250,
                                       fit: BoxFit.fill,

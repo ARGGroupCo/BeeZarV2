@@ -4,6 +4,7 @@ import 'package:beezer_v2/model/item_model.dart';
 import 'package:beezer_v2/model/sub_gategory_model.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/item/item_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,6 +16,7 @@ class HomeController extends GetxController {
   Map<String, List<SubCategoryModel>> listSubCategory = {};
   List<ItemModel> itemModelAll = [];
   List<ItemModel> itemModelShearch = [];
+  PageController pageController = PageController();
 
   void cheangeCategory(int? num) {
     if (categore == num) {

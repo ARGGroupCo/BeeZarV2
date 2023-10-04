@@ -1,4 +1,5 @@
 import 'package:beezer_v2/res/color_manager.dart';
+import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarDef extends StatefulWidget {
@@ -15,6 +16,7 @@ int _check = 1;
 class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
   @override
   Widget build(BuildContext context) {
+    HomeController homeController = HomeController();
     return Container(
       color: const Color.fromARGB(10, 0, 0, 0),
       padding: const EdgeInsets.all(10),
@@ -27,6 +29,7 @@ class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
             check: _check,
             press: () => setState(() {
               _check = 1;
+              homeController.pageController.jumpTo(0);
             }),
           ),
           IconButtomBarDef(
@@ -35,6 +38,7 @@ class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
             check: _check,
             press: () => setState(() {
               _check = 2;
+              homeController.pageController.jumpTo(1);
             }),
           ),
           IconButtomBarDef(
@@ -43,6 +47,7 @@ class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
             check: _check,
             press: () => setState(() {
               _check = 3;
+              homeController.pageController.jumpTo(3);
             }),
           ),
           IconButtomBarDef(
@@ -51,6 +56,7 @@ class _BottomNavigationBarDefState extends State<BottomNavigationBarDef> {
             check: _check,
             press: () => setState(() {
               _check = 4;
+              homeController.pageController.jumpTo(4);
             }),
           ),
         ],

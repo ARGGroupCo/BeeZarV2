@@ -3,6 +3,7 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/res/hostting.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/widget/progress_home_row.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,8 +67,13 @@ class RowItemCategories extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.network(
-                                '${Hostting.imageCategory}/${snapshot.data![index].image}',
+                              CachedNetworkImage(
+                                imageUrl:
+                                    '${Hostting.imageCategory}/${snapshot.data![index].image}',
+                                placeholder: (context, url) =>
+                                    const ProgressHomeRow(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                                 height: 50,
                                 width: 50,
                               ),

@@ -6,7 +6,7 @@ import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart
 import 'package:beezer_v2/screen/auth/login/widget/row_remmber_me_and_forget_password.dart';
 import 'package:beezer_v2/screen/auth/login/widget/svg_bottom_bar.dart';
 import 'package:beezer_v2/screen/auth/register/register_screen_one.dart';
-import 'package:beezer_v2/screen/home/home_screen.dart';
+import 'package:beezer_v2/screen/home/primer_screen.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                             var res = await authController.login(
                                 email.text, password.text);
                             if (res) {
-                              Get.off(const HomeScreen());
+                              Get.off(const PrimerScreen());
                             } else {
                               Get.snackbar("خطأ",
                                   "تم ادخال اسم المستخدم او كلمة المرور بشكل خاطئ");

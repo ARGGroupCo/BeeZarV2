@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/login/login_screen.dart';
-import 'package:beezer_v2/screen/home/home_screen.dart';
+import 'package:beezer_v2/screen/home/primer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
           }
           Timer(const Duration(seconds: 3), () {
             if (_authController.checkUser!) {
-              Get.off(const HomeScreen());
+              Get.off(const PrimerScreen());
             } else {
               Get.off(const LoginScreen());
             }
