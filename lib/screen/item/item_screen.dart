@@ -29,7 +29,9 @@ class ItemScreen extends StatelessWidget {
             price: item.price.toString(),
             username: item.username,
           ),
-          const ConttactButtomAndFavorite()
+          ConttactButtomAndFavorite(
+            phone: item.phone,
+          )
         ],
       ),
     );

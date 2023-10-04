@@ -4,10 +4,8 @@ import 'package:beezer_v2/screen/item/widget/cottact_with_user.dart';
 import 'package:flutter/material.dart';
 
 class ConttactButtomAndFavorite extends StatelessWidget {
-  const ConttactButtomAndFavorite({
-    super.key,
-  });
-
+  const ConttactButtomAndFavorite({super.key, required this.phone});
+  final String phone;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +14,7 @@ class ConttactButtomAndFavorite extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ElevatedButton(
-            onPressed: () => conttactWithUser(),
+            onPressed: () => conttactWithUser(phone),
             style: const ButtonStyle(
                 elevation: MaterialStatePropertyAll(5),
                 fixedSize: MaterialStatePropertyAll(Size(250, 50)),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Future<dynamic> conttactWithUser() {
+Future<dynamic> conttactWithUser(String phone) {
   return Get.dialog(
     AlertDialog(
       backgroundColor: ColorManager.primaryColor,
@@ -30,7 +30,7 @@ Future<dynamic> conttactWithUser() {
         children: [
           ElevatedButton(
               onPressed: () async {
-                if (await canLaunchUrl(Uri.parse("tel:+963956108642"))) {
+                if (await canLaunchUrl(Uri.parse("tel:$phone"))) {
                   launchUrl(Uri.parse("tel:0963956108642"));
                 }
               },
@@ -38,10 +38,10 @@ Future<dynamic> conttactWithUser() {
           ElevatedButton(
               onPressed: () async {
                 if (await canLaunchUrl(
-                    Uri.parse("whatsapp://send?phone=+963956108642"))) {
-                  launchUrl(Uri.parse("whatsapp://send?phone=+963956108642"));
+                    Uri.parse("whatsapp://send?phone=$phone"))) {
+                  launchUrl(Uri.parse("whatsapp://send?phone=$phone"));
                 } else {
-                  launchUrl(Uri.parse("https://wa.me/+963956108642"));
+                  launchUrl(Uri.parse("https://wa.me/$phone"));
                 }
               },
               child: const Text("وتس اب")),
