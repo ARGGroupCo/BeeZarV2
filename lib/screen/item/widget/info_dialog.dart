@@ -3,7 +3,7 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future<dynamic> infoDialog() {
+Future<dynamic> infoDialog(String discreption) {
   return Get.dialog(
     AlertDialog(
       backgroundColor: ColorManager.primaryColor,
@@ -24,8 +24,8 @@ Future<dynamic> infoDialog() {
               ))
         ],
       ),
-      content: const Text(
-        "The Mercedes-Benz S-Class enjoys a spot year after year solidly near the top of the automotive heap. It’s simply a top tier machine that epitomizes what drivers think of as the “luxury segment.”Read more....",
+      content: Text(
+        discreption,
         style: FontDef.w700S16Cw,
       ),
       actions: [
