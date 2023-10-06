@@ -1,6 +1,7 @@
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/page/Home.dart';
-import 'package:beezer_v2/screen/home/page/fav_screen.dart';
+import 'package:beezer_v2/screen/home/page/my_favorite_screen.dart';
+import 'package:beezer_v2/screen/home/page/my_item_screen.dart';
 import 'package:beezer_v2/widget/app_bar_home.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class PrimerScreen extends StatelessWidget {
 
 List<Widget> page = [
   const HomeScreen(),
-  Container(),
-  const FavScreen(),
+  const MyItemScreen(),
+  const MyFavoriteScreen(),
   Container(),
 ];

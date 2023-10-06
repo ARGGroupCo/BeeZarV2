@@ -74,6 +74,10 @@ class HomeController extends GetxController {
     update();
   }
 
+  Future<List<ItemModel>> getMyItem() async {
+    return [];
+  }
+
   Future<List<SubCategoryModel>> getSubCategory(int num) async {
     List<SubCategoryModel> listSub = [];
     http.Response responseSub = await http.get(Hostting.getSubCategory(num),

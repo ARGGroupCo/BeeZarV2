@@ -16,13 +16,6 @@ class RowItemCategories extends StatelessWidget {
     HomeController homeController = Get.find();
     Color color;
     List<BoxShadow> shadow;
-
-    // return FutureBuilder(
-    //     future: homeController.getCategoryAndSub(),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.connectionState == ConnectionState.waiting) {
-    //         return const ProgressHomeRow();
-    //       }
     return GetBuilder<HomeController>(
         init: homeController,
         builder: (controller) {
