@@ -17,13 +17,13 @@ class HomeController extends GetxController {
   List<ItemModel> itemModelAll = [];
   List<ItemModel> itemModelShearch = [];
   PageController pageController = PageController();
+  List<String> listDropDownSearch = [];
   int pageNumber = 0;
 
   @override
   void onInit() async {
     await getCategoryAndSub();
     await getAllItems(false);
-    await getFavourite(null);
     super.onInit();
   }
 
@@ -111,6 +111,33 @@ class HomeController extends GetxController {
     return listGategoryModel;
   }
 
+  Future<List<ItemModel>> getFavourite(ItemModel? itemModel) async {
+    if (itemModelAll.isNotEmpty) {
+      if (itemModel == null) {
+        http.Response response = await http.post(Hostting.getFavourite,
+            headers: Hostting().getHeader());
+        if (response.statusCode == 200) {
+          var body = jsonDecode(response.body);
+          if (body["favorite_items"] != null) {
+            for (var element in body["favorite_items"]) {
+              var it = itemModelAll
+                  .where((item) => item.id == ItemModel.fromJson(element).id)
+                  .firstOrNull;
+              if (it != null) {
+                var i = itemModelAll.indexOf(it);
+                itemModelAll[i].favorite = true;
+              }
+            }
+          }
+        }
+      } else {
+        var i = itemModelAll.indexOf(itemModel);
+        itemModelAll[i].favorite = !itemModelAll[i].favorite;
+      }
+    }
+    return itemModelAll.where((element) => element.favorite).toList();
+  }
+
   Future<List<ItemModel>> getAllItems(bool updateData) async {
     if (itemModelAll.isEmpty || updateData) {
       http.Response response =
@@ -123,30 +150,12 @@ class HomeController extends GetxController {
         }
         itemModelAll = list;
         itemModelShearch = list;
+        await getFavourite(null);
+        update();
         return list;
       }
     }
     return itemModelShearch;
-  }
-
-  Future<List<ItemModel>> getFavourite(ItemModel? itemModel) async {
-    if (itemModel == null) {
-      http.Response response = await http.post(Hostting.getFavourite,
-          headers: Hostting().getHeader());
-      if (response.statusCode == 200) {
-        var body = jsonDecode(response.body);
-        if (body["favorite_items"] != null) {
-          for (var element in body["favorite_items"]) {
-            var i = itemModelAll.indexOf(ItemModel.fromJson(element));
-            itemModelAll[i].favorite = true;
-          }
-        }
-      }
-    } else {
-      var i = itemModelAll.indexOf(itemModel);
-      itemModelAll[i].favorite = !itemModelAll[i].favorite;
-    }
-    return itemModelAll.where((element) => element.favorite).toList();
   }
 
   Future<bool> addDeleteFavourite(ItemModel item) async {
@@ -156,9 +165,16 @@ class HomeController extends GetxController {
     if (response.statusCode == 200) {
       var i = itemModelAll.indexOf(item);
       itemModelAll[i].favorite = !itemModelAll[i].favorite;
-      // update();
+      update();
       return true;
     }
     return false;
+  }
+
+  void buildListSearch() {
+    for (var element in itemModelAll) {
+      listDropDownSearch.add("${element.id} - الاسم:${element.name}");
+    }
+    update();
   }
 }

@@ -14,6 +14,7 @@ AppBar appBarItem() {
         color: ColorManager.black,
       ),
     ),
-    title: Image.asset("lib/assets/images/logoo 1.png", fit: BoxFit.fill),
+    title: Image.asset("lib/assets/images/logoo 1.png",
+        width: 50, height: 50, fit: BoxFit.fill),
   );
 }

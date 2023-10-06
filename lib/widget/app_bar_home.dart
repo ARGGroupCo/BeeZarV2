@@ -10,11 +10,6 @@ import 'package:get/get.dart';
 
 AppBar appBarHome(BuildContext context) {
   HomeController homeController = Get.find();
-  List<String> list = [];
-  for (var element in homeController.itemModelAll) {
-    list.add("${element.id} - الاسم:${element.name}");
-  }
-  homeController.update();
   return AppBar(
     toolbarHeight: 75,
     backgroundColor: Colors.transparent,
@@ -49,7 +44,7 @@ AppBar appBarHome(BuildContext context) {
                     Icon(Icons.search, color: ColorManager.primaryColor),
               ),
             ),
-            items: list,
+            items: homeController.listDropDownSearch,
             onChanged: (value) {
               int id = int.parse(value!.substring(0, value.indexOf("-") - 1));
               var item = homeController.itemModelAll

@@ -87,17 +87,20 @@ flutter:
   fonts:
     - family: Cairo
       fonts:
-        - asset: assets/fonts/Cairo-Black.ttf
-        - asset: assets/fonts/Cairo-Bold.ttf
+        - asset: lib/assets/fonts/Cairo-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Cairo-ExtraBold.ttf
-        - asset: assets/fonts/Cairo-ExtraLight.ttf
-        - asset: assets/fonts/Cairo-Light.ttf
-        - asset: assets/fonts/Cairo-Medium.ttf
+        - asset: lib/assets/fonts/Cairo-Black.ttf          
+        - asset: lib/assets/fonts/Cairo-ExtraBold.ttf
+          weight: 900
+        - asset: lib/assets/fonts/Cairo-ExtraLight.ttf
+          weight: 200
+        - asset: lib/assets/fonts/Cairo-Light.ttf
+          weight: 300
+        - asset: lib/assets/fonts/Cairo-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: lib/assets/fonts/Cairo-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Cairo-SemiBold.ttf
+        - asset: lib/assets/fonts/Cairo-SemiBold.ttf
           weight: 600
   #
   # For details regarding fonts from package dependencies,
