@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:beezer_v2/screen/home/home_controller.dart';
-import 'package:beezer_v2/screen/home/page/app_bar_fav.dart';
+import 'package:beezer_v2/screen/home/widget/app_bar_fav.dart';
 import 'package:beezer_v2/screen/home/widget/show_list_item_widget.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';

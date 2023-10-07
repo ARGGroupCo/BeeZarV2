@@ -1,7 +1,9 @@
 import 'package:beezer_v2/res/font_def.dart';
-import 'package:beezer_v2/screen/home/page/app_bar_profile.dart';
+import 'package:beezer_v2/screen/home/page/profile_edit_screen.dart';
+import 'package:beezer_v2/screen/home/widget/app_bar_profile.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../res/color_manager.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -29,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () => Get.to(const ProfileEditScreen()),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.06,
@@ -43,7 +45,6 @@ class ProfileScreen extends StatelessWidget {
                             offset: const Offset(0, 5),
                           )
                         ],
-                        // border: Border.all(color: ColorManager.grayText),
                         borderRadius: BorderRadius.circular(15),
                       )),
                       child: const Padding(
@@ -115,7 +116,6 @@ class ProfileScreen extends StatelessWidget {
                             offset: const Offset(0, 5),
                           )
                         ],
-                        // border: Border.all(color: ColorManager.grayText),
                         borderRadius: BorderRadius.circular(15),
                       )),
                       child: const Padding(

@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 InputDecoration inputDecorationProgfileEdit(IconData? icon, String label) {
   return InputDecoration(
     contentPadding:
-    const EdgeInsets.only(bottom:10, top:10, left: 15, right: 15),
-    border: OutlineInputBorder(
+        const EdgeInsets.only(bottom: 10, top: 10, left: 15, right: 15),
+    border: const OutlineInputBorder(
       borderSide: BorderSide(color: ColorManager.grayText, width: 1),
       borderRadius: BorderRadius.all(
         Radius.circular(10),
       ),
     ),
-    focusedBorder: OutlineInputBorder(
+    focusedBorder: const OutlineInputBorder(
       borderSide: BorderSide(color: ColorManager.grayText, width: 1),
       borderRadius: BorderRadius.all(
         Radius.circular(10),
       ),
     ),
-    enabledBorder: OutlineInputBorder(
+    enabledBorder: const OutlineInputBorder(
       borderSide: BorderSide(color: ColorManager.grayText, width: 1),
       borderRadius: BorderRadius.all(
         Radius.circular(10),

@@ -1,4 +1,4 @@
-import 'package:beezer_v2/screen/home/page/input_decoration_profileEdit.dart';
+import 'package:beezer_v2/screen/home/widget/input_decoration_profile_edit.dart';
 import 'package:flutter/material.dart';
 
 class TextFormFieldProfileEdit extends StatelessWidget {
