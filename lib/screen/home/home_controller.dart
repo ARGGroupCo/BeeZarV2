@@ -9,46 +9,47 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  int? categore;
-  int? subCategory;
-  String? region;
-  List<GategoryModel> listGategoryModel = [];
-  Map<String, List<SubCategoryModel>> listSubCategory = {};
-  List<ItemModel> itemModelAll = [];
-  List<ItemModel> itemModelShearch = [];
+  RxInt categore = (-1).obs;
+  RxInt subCategory = (-1).obs;
+  RxString region = "".obs;
+  RxList<GategoryModel> listGategoryModel = RxList<GategoryModel>();
+  RxMap<String, List<SubCategoryModel>> listSubCategory =
+      RxMap<String, List<SubCategoryModel>>();
+  RxList<ItemModel> itemModelAll = RxList<ItemModel>();
+  RxList<ItemModel> itemModelShearch = RxList<ItemModel>();
   PageController pageController = PageController();
-  List<String> listDropDownSearch = [];
-  int pageNumber = 0;
+  RxList<String> listDropDownSearch = RxList<String>();
+  RxInt pageNumber = 0.obs;
 
   @override
   void onInit() async {
     await getCategoryAndSub();
-    await getAllItems(false);
+    // await getAllItems(false);
     super.onInit();
   }
 
+  void changeRegion(String val) {
+    region.value = val;
+  }
+
   void cheangePage(int number) {
-    pageNumber = number;
+    pageNumber.value = number;
     pageController.jumpToPage(number);
-    update();
   }
 
   void cheangeCategory(int? num) {
-    if (categore == num) {
-      categore = null;
-      subCategory = -1;
+    if (categore.value != -1 && categore.value == num) {
+      categore.value = -1;
     } else {
-      categore = num;
-      subCategory = -1;
+      categore.value = num!;
     }
+    subCategory.value = -1;
     searchItem();
-    update();
   }
 
   void cheangeSubCategory(int? sub) {
-    subCategory = sub;
+    subCategory.value = sub!;
     searchItem();
-    update();
   }
 
   void toItem(ItemModel itemModel) {
@@ -56,26 +57,40 @@ class HomeController extends GetxController {
   }
 
   void searchItem() {
-    itemModelShearch = itemModelAll;
-    if (region != null) {
-      itemModelShearch =
-          itemModelAll.where((element) => element.address == region).toList();
-    }
-    if (categore != null) {
-      itemModelShearch = itemModelShearch
-          .where((element) => element.categoryId == categore)
+    // ignore: invalid_use_of_protected_member
+    itemModelShearch.value = itemModelAll.value;
+    if (region.value != "") {
+      itemModelShearch.value = itemModelAll
+          .where((element) => element.address == region.value)
           .toList();
     }
-    if (subCategory != -1 && subCategory != null) {
-      itemModelShearch = itemModelShearch
-          .where((element) => element.subCategoryId == subCategory)
+    if (categore.value != -1) {
+      itemModelShearch.value = itemModelShearch
+          .where((element) => element.categoryId == categore.value)
           .toList();
     }
-    update();
+    if (subCategory.value != -1) {
+      itemModelShearch.value = itemModelShearch
+          .where((element) => element.subCategoryId == subCategory.value)
+          .toList();
+    }
+    itemModelShearch.refresh();
+    subCategory.refresh();
+    categore.refresh();
   }
 
   Future<List<ItemModel>> getMyItem() async {
-    return [];
+    http.Response response =
+        await http.get(Hostting.getMyItem, headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      List<ItemModel> list = [];
+      var body = jsonDecode(response.body);
+      for (var element in body["items"]) {
+        list.add(ItemModel.fromJson(element));
+      }
+      return list;
+    }
+    return List.empty();
   }
 
   Future<List<SubCategoryModel>> getSubCategory(int num) async {
@@ -150,12 +165,13 @@ class HomeController extends GetxController {
         List<ItemModel> list = [];
         var body = jsonDecode(response.body);
         for (var element in body["items"]) {
-          list.add(ItemModel.fromJson(element));
+          var it = ItemModel.fromJson(element);
+          itemModelAll.add(it);
+          itemModelShearch.add(it);
+          listDropDownSearch.add("${it.id} - ${it.name}");
         }
-        itemModelAll = list;
-        itemModelShearch = list;
         await getFavourite(null);
-        update();
+        refresh();
         return list;
       }
     }
@@ -169,7 +185,8 @@ class HomeController extends GetxController {
     if (response.statusCode == 200) {
       var i = itemModelAll.indexOf(item);
       itemModelAll[i].favorite = !itemModelAll[i].favorite;
-      update();
+      itemModelShearch.refresh();
+      itemModelAll.refresh();
       return true;
     }
     return false;
@@ -179,6 +196,6 @@ class HomeController extends GetxController {
     for (var element in itemModelAll) {
       listDropDownSearch.add("${element.id} - الاسم:${element.name}");
     }
-    update();
+    refresh();
   }
 }

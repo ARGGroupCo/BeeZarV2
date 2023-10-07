@@ -9,17 +9,16 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  RxInt? categore;
-  RxInt? subCategory;
-  RxString? region;
-  RxList<GategoryModel> listGategoryModel = [].obs as RxList<GategoryModel>;
-  RxMap<String, List<SubCategoryModel>> listSubCategory =
-      {}.obs as RxMap<String, List<SubCategoryModel>>;
-  RxList<ItemModel> itemModelAll = [].obs as RxList<ItemModel>;
-  RxList<ItemModel> itemModelShearch = [].obs as RxList<ItemModel>;
+  int? categore;
+  int? subCategory;
+  String? region;
+  List<GategoryModel> listGategoryModel = [];
+  Map<String, List<SubCategoryModel>> listSubCategory = {};
+  List<ItemModel> itemModelAll = [];
+  List<ItemModel> itemModelShearch = [];
   PageController pageController = PageController();
-  RxList<String> listDropDownSearch = [].obs as RxList<String>;
-  RxInt pageNumber = 0.obs;
+  List<String> listDropDownSearch = [];
+  int pageNumber = 0;
 
   @override
   void onInit() async {
@@ -29,7 +28,7 @@ class HomeController extends GetxController {
   }
 
   void cheangePage(int number) {
-    pageNumber = number.obs;
+    pageNumber = number;
     pageController.jumpToPage(number);
     update();
   }
@@ -37,17 +36,17 @@ class HomeController extends GetxController {
   void cheangeCategory(int? num) {
     if (categore == num) {
       categore = null;
-      subCategory = (-1).obs;
+      subCategory = -1;
     } else {
-      categore = num!.obs;
-      subCategory = (-1).obs;
+      categore = num;
+      subCategory = -1;
     }
     searchItem();
     update();
   }
 
   void cheangeSubCategory(int? sub) {
-    subCategory = sub!.obs;
+    subCategory = sub;
     searchItem();
     update();
   }
@@ -59,22 +58,18 @@ class HomeController extends GetxController {
   void searchItem() {
     itemModelShearch = itemModelAll;
     if (region != null) {
-      itemModelShearch = itemModelAll
-          .where((element) => element.address == region!.value)
-          .toList()
-          .obs;
+      itemModelShearch =
+          itemModelAll.where((element) => element.address == region).toList();
     }
     if (categore != null) {
       itemModelShearch = itemModelShearch
-          .where((element) => element.categoryId == categore!.value)
-          .toList()
-          .obs;
+          .where((element) => element.categoryId == categore)
+          .toList();
     }
-    if (subCategory != null && subCategory!.value != -1) {
+    if (subCategory != -1 && subCategory != null) {
       itemModelShearch = itemModelShearch
-          .where((element) => element.subCategoryId == subCategory!.value)
-          .toList()
-          .obs;
+          .where((element) => element.subCategoryId == subCategory)
+          .toList();
     }
     update();
   }
@@ -157,8 +152,8 @@ class HomeController extends GetxController {
         for (var element in body["items"]) {
           list.add(ItemModel.fromJson(element));
         }
-        itemModelAll = list.obs;
-        itemModelShearch = list.obs;
+        itemModelAll = list;
+        itemModelShearch = list;
         await getFavourite(null);
         update();
         return list;

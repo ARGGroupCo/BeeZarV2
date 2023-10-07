@@ -1,7 +1,7 @@
 import 'package:beezer_v2/widget/drop_down_item_def.dart';
 
 var listRegion = [
-  dropDownMenuItemDef(null, "حدد الموقع"),
+  dropDownMenuItemDef("", "حدد الموقع"),
   dropDownMenuItemDef("الرقة", "الرقة"),
   dropDownMenuItemDef("الطبقة", "الطبقة"),
   dropDownMenuItemDef("بو كمال", "بو كمال"),

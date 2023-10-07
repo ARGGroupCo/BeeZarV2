@@ -1,4 +1,5 @@
 import 'package:beezer_v2/model/item_model.dart';
+import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/widget/item_in_favorite.dart';
 import 'package:beezer_v2/screen/item/item_screen.dart';
@@ -17,29 +18,36 @@ class ShowListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    return GetBuilder<HomeController>(
-        init: homeController,
-        builder: (controller) {
-          return ListView.builder(
-            itemCount: list.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return ItemInFavorite(
-                isfav: true,
-                item: list[index],
-                pressItem: () => Get.to(ItemScreen(item: list[index])),
-                pressContact: () => isFavorite
-                    ? conttactWithUser(list[index].phone)
-                    : Get.to(const UpdateItemScreen()),
-                pressDelete: () async {
-                  var b = await homeController.addDeleteFavourite(list[index]);
-                  if (b) {
-                    list.removeWhere((element) => element == list[index]);
-                  }
-                },
-              );
-            },
-          );
-        });
+    if (list.isEmpty) {
+      return const Center(
+        child: Text(
+          "لا يوجد عناصر لعرضها",
+          style: FontDef.w400S16Cb,
+        ),
+      );
+    }
+    return ListView.builder(
+      itemCount: list.length,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) {
+        return ItemInFavorite(
+          isfav: isFavorite,
+          item: list[index],
+          pressItem: () => Get.to(ItemScreen(item: list[index])),
+          pressContact: () => isFavorite
+              ? conttactWithUser(list[index].phone)
+              : Get.to(const UpdateItemScreen()),
+          pressDelete: () async {
+            //
+            //حذف منشور
+            //
+            var b = await homeController.addDeleteFavourite(list[index]);
+            if (b) {
+              list.removeWhere((element) => element == list[index]);
+            }
+          },
+        );
+      },
+    );
   }
 }

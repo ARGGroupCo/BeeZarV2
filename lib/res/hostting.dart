@@ -33,4 +33,5 @@ class Hostting {
   static Uri getFavourite = Uri.parse("$api/get_item_in my favourite");
   static Uri addDeleteFavourite(int id) =>
       Uri.parse("$api/add&delete_for_favourite/$id");
+  static Uri getMyItem = Uri.parse("$api/getMyItems");
 }

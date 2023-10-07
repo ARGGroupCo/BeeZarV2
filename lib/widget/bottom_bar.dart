@@ -10,7 +10,7 @@ class BottomNavigationBarDef extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    return GetBuilder<HomeController>(
+    return GetX<HomeController>(
       init: homeController,
       builder: (controller) {
         return Container(
@@ -22,25 +22,25 @@ class BottomNavigationBarDef extends StatelessWidget {
               IconButtomBarDef(
                 icon: Icons.home_outlined,
                 order: 0,
-                check: controller.pageNumber,
+                check: controller.pageNumber.value,
                 press: () => controller.cheangePage(0),
               ),
               IconButtomBarDef(
                 icon: Icons.shopping_bag_outlined,
                 order: 1,
-                check: controller.pageNumber,
+                check: controller.pageNumber.value,
                 press: () => controller.cheangePage(1),
               ),
               IconButtomBarDef(
                 icon: Icons.favorite_border,
                 order: 2,
-                check: controller.pageNumber,
+                check: controller.pageNumber.value,
                 press: () => controller.cheangePage(2),
               ),
               IconButtomBarDef(
                 icon: Icons.person_outline_outlined,
                 order: 3,
-                check: controller.pageNumber,
+                check: controller.pageNumber.value,
                 press: () => controller.cheangePage(3),
               ),
             ],

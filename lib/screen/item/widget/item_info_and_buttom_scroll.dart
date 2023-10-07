@@ -20,44 +20,40 @@ class ItemInfoAndButtomScroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ItemController itemController = Get.find();
-    return GetBuilder<ItemController>(
-        init: itemController,
-        builder: (controller) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const ArrowButtom(isleft: true, show: true),
-              Column(
-                children: [
-                  Text(name, style: FontDef.w500S15Cb),
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width - 50,
-                    child: TextButton(
-                      onPressed: () => infoDialog(descrption),
-                      child: Text(
-                        descrption,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: FontDef.w400S14Cg,
-                      ),
-                    ),
-                  ),
-                  DotsIndicator(
-                    reversed: false,
-                    dotsCount: number,
-                    position: itemController.pagenum,
-                    decorator: DotsDecorator(
-                      activeColor: ColorManager.primaryColor,
-                      activeSize: const Size(18, 9),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                  ),
-                ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const ArrowButtom(isleft: true, show: true),
+        Column(
+          children: [
+            Text(name, style: FontDef.w500S15Cb),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width - 50,
+              child: TextButton(
+                onPressed: () => infoDialog(descrption),
+                child: Text(
+                  descrption,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: FontDef.w400S14Cg,
+                ),
               ),
-              const ArrowButtom(isleft: false, show: true),
-            ],
-          );
-        });
+            ),
+            DotsIndicator(
+              reversed: false,
+              dotsCount: number,
+              position: itemController.pagenum,
+              decorator: DotsDecorator(
+                activeColor: ColorManager.primaryColor,
+                activeSize: const Size(18, 9),
+                activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
+              ),
+            ),
+          ],
+        ),
+        const ArrowButtom(isleft: false, show: true),
+      ],
+    );
   }
 }

@@ -1,5 +1,9 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:beezer_v2/screen/home/home_controller.dart';
+import 'package:beezer_v2/screen/home/page/app_bar_fav.dart';
 import 'package:beezer_v2/screen/home/widget/show_list_item_widget.dart';
+import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,12 +12,16 @@ class MyFavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    var list = homeController.itemModelAll
+    var list = homeController.itemModelAll.value
         .where((element) => element.favorite)
         .toList();
-    return SizedBox(
-      height: double.infinity,
-      child: ShowListItemWidget(isFavorite: true, list: list),
+    return Scaffold(
+      appBar: appBarFav(context, "المفضلة"),
+      bottomNavigationBar: const BottomNavigationBarDef(),
+      body: SizedBox(
+        height: double.infinity,
+        child: ShowListItemWidget(isFavorite: true, list: list),
+      ),
     );
   }
 }

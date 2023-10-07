@@ -16,18 +16,18 @@ class RowItemCategories extends StatelessWidget {
     HomeController homeController = Get.find();
     Color color;
     List<BoxShadow> shadow;
-    return GetBuilder<HomeController>(
+    return GetX<HomeController>(
         init: homeController,
         builder: (controller) {
           return SizedBox(
             height: 100,
             child: ListView.builder(
-              itemCount: homeController.listGategoryModel.length,
+              itemCount: controller.listGategoryModel.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                if (controller.categore != null &&
+                if (controller.categore.value != -1 &&
                     controller.listGategoryModel[index].id !=
-                        controller.categore) {
+                        controller.categore.value) {
                   color = Colors.transparent;
                   shadow = const [];
                 } else {

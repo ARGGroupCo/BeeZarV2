@@ -14,10 +14,10 @@ class ItemShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    return GetBuilder<HomeController>(
+    return GetX<HomeController>(
       init: homeController,
       builder: (controller) {
-        if (controller.categore == null) {
+        if (controller.categore.value == -1) {
           return Column(
             children: [
               RowShowAll(press: () {}, text: "المضافة حديثاً"),
@@ -33,10 +33,10 @@ class ItemShow extends StatelessWidget {
             ],
           );
         } else {
-          return Column(
+          return const Column(
             children: [
-              ListSubCategories(gategory: controller.categore!),
-              ListViewSubCategoriesItems(list: homeController.itemModelShearch)
+              ListSubCategories(),
+              ListViewSubCategoriesItems(),
             ],
           );
         }

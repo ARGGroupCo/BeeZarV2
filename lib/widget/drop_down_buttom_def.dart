@@ -13,7 +13,7 @@ class DropDownButtonDef extends StatefulWidget {
   State<DropDownButtonDef> createState() => _DropDownButtomDefState();
 }
 
-String? _val;
+String _val = "";
 
 class _DropDownButtomDefState extends State<DropDownButtonDef> {
   @override
@@ -25,7 +25,7 @@ class _DropDownButtomDefState extends State<DropDownButtonDef> {
       items: listRegion,
       onChanged: (value) => setState(() {
         _val = value;
-        homeController.region = value;
+        homeController.changeRegion(value!);
         homeController.searchItem();
       }),
     );
