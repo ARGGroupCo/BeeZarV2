@@ -18,13 +18,13 @@ class RowShowAll extends StatelessWidget {
           text,
           style: FontDef.w500S12Cb,
         ),
-        TextButton(
-          onPressed: press,
-          child: const Text(
-            "شاهد الكل",
-            style: FontDef.w500S12Cp,
-          ),
-        ),
+        // TextButton(
+        //   onPressed: press,
+        //   child: const Text(
+        //     "شاهد الكل",
+        //     style: FontDef.w500S12Cp,
+        //   ),
+        // ),
       ],
     );
   }

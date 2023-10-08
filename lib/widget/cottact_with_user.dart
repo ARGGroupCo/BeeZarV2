@@ -1,5 +1,6 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/widget/buttin_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 Future<dynamic> conttactWithUser(String phone) {
   return Get.dialog(
     AlertDialog(
-      backgroundColor: ColorManager.primaryColor,
+      backgroundColor: ColorManager.litePrimaryColor,
       elevation: 3,
       insetPadding: const EdgeInsets.all(30),
       title: Row(
@@ -28,23 +29,29 @@ Future<dynamic> conttactWithUser(String phone) {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          ElevatedButton(
-              onPressed: () async {
-                if (await canLaunchUrl(Uri.parse("tel:$phone"))) {
-                  launchUrl(Uri.parse("tel:0963956108642"));
-                }
-              },
-              child: const Text("اتصال هاتفي")),
-          ElevatedButton(
-              onPressed: () async {
-                if (await canLaunchUrl(
-                    Uri.parse("whatsapp://send?phone=$phone"))) {
-                  launchUrl(Uri.parse("whatsapp://send?phone=$phone"));
-                } else {
-                  launchUrl(Uri.parse("https://wa.me/$phone"));
-                }
-              },
-              child: const Text("وتس اب")),
+          ButtonContact(
+            phone: phone,
+            svg: "lib/assets/images/telephone-call.svg",
+            text: "اتصال هاتفي",
+            press: () async {
+              if (await canLaunchUrl(Uri.parse("tel:$phone"))) {
+                launchUrl(Uri.parse("tel:$phone"));
+              }
+            },
+          ),
+          ButtonContact(
+            phone: phone,
+            svg: "lib/assets/images/whatsapp.svg",
+            text: "وتس اب",
+            press: () async {
+              if (await canLaunchUrl(
+                  Uri.parse("whatsapp://send?phone=$phone"))) {
+                launchUrl(Uri.parse("whatsapp://send?phone=$phone"));
+              } else {
+                launchUrl(Uri.parse("https://wa.me/$phone"));
+              }
+            },
+          ),
         ],
       ),
       actions: [

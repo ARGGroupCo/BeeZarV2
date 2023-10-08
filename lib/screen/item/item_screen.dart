@@ -28,7 +28,7 @@ class ItemScreen extends StatelessWidget {
             username: item.username,
           ),
           ConttactButtomAndFavorite(
-            phone: item.phone,
+            item: item,
           )
         ],
       ),
