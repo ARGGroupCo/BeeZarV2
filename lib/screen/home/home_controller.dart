@@ -24,7 +24,6 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     await getCategoryAndSub();
-    // await getAllItems(false);
     super.onInit();
   }
 
@@ -45,6 +44,7 @@ class HomeController extends GetxController {
     }
     subCategory.value = -1;
     searchItem();
+    refresh();
   }
 
   void cheangeSubCategory(int? sub) {

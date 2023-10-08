@@ -7,10 +7,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RowItemCategories extends StatelessWidget {
+class RowItemCategories extends StatefulWidget {
   const RowItemCategories({
     super.key,
   });
+
+  @override
+  State<RowItemCategories> createState() => _RowItemCategoriesState();
+}
+
+class _RowItemCategoriesState extends State<RowItemCategories> {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
@@ -45,6 +51,7 @@ class RowItemCategories extends StatelessWidget {
                   onTap: () {
                     controller.cheangeCategory(
                         controller.listGategoryModel[index].id);
+                    setState(() {});
                   },
                   child: Container(
                     margin: const EdgeInsets.only(

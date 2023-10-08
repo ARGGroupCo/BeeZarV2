@@ -16,7 +16,7 @@ class RowShowAll extends StatelessWidget {
       children: [
         Text(
           text,
-          style: FontDef.w500S12Cb,
+          style: FontDef.w500S15Cb,
         ),
         // TextButton(
         //   onPressed: press,

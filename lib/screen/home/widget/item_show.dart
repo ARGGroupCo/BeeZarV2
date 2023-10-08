@@ -28,8 +28,8 @@ class ItemShow extends StatelessWidget {
               RowShowAll(press: () {}, text: "المفضلة"),
               RowItemHome(
                   future: homeController.getFavourite(null),
-                  sizeH: 170,
-                  sizeW: 130),
+                  sizeH: 200,
+                  sizeW: 140),
             ],
           );
         } else {
