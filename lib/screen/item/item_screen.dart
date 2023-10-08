@@ -4,7 +4,6 @@ import 'package:beezer_v2/screen/item/widget/conttact_buttom_and_favorite.dart';
 import 'package:beezer_v2/screen/item/widget/info_user_contact.dart';
 import 'package:beezer_v2/screen/item/widget/item_info_and_buttom_scroll.dart';
 import 'package:beezer_v2/screen/item/widget/page_builder_image.dart';
-import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class ItemScreen extends StatelessWidget {
@@ -14,7 +13,6 @@ class ItemScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarItem(),
-      bottomNavigationBar: const BottomNavigationBarDef(),
       body: Column(
         children: [
           PageBuilderImage(images: item.images!),

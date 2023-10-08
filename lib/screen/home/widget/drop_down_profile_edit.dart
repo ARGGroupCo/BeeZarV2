@@ -5,22 +5,23 @@ import 'package:flutter/material.dart';
 class DropDownProfileEdit extends StatefulWidget {
   const DropDownProfileEdit({
     super.key,
+    required this.press,
+    required this.val,
   });
-
+  final void Function(String?) press;
+  final String? val;
   @override
   State<DropDownProfileEdit> createState() => _DropDownProfileEditState();
 }
-
-String? _val;
 
 class _DropDownProfileEditState extends State<DropDownProfileEdit> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
       style: FontDef.w400S15Cb,
-      value: _val,
+      value: widget.val,
       items: [
-        dropDownMenuItemDef(null, "حدد الموقع"),
+        dropDownMenuItemDef("", "حدد الموقع"),
         dropDownMenuItemDef("دمشق", "دمشق"),
         dropDownMenuItemDef("حلب", "حلب"),
         dropDownMenuItemDef("حمص", "حمص"),
@@ -42,7 +43,7 @@ class _DropDownProfileEditState extends State<DropDownProfileEdit> {
         dropDownMenuItemDef("درعا", "درعا"),
       ],
       onChanged: (value) => setState(() {
-        _val = value;
+        widget.press;
       }),
     );
   }

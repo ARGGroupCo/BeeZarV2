@@ -54,6 +54,7 @@ class ItemInFavorite extends StatelessWidget {
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                   height: 90,
                   width: 70,
+                  fit: BoxFit.fill,
                 ),
               ),
               Column(

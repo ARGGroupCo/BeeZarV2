@@ -1,5 +1,6 @@
 import 'package:beezer_v2/res/color_manager.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
+import 'package:beezer_v2/widget/icon_buttom_bar_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,34 +15,51 @@ class BottomNavigationBarDef extends StatelessWidget {
       init: homeController,
       builder: (controller) {
         return Container(
-          color: const Color.fromARGB(10, 0, 0, 0),
+          color: Colors.transparent,
           padding: const EdgeInsets.all(10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButtomBarDef(
-                icon: Icons.home_outlined,
-                order: 0,
-                check: controller.pageNumber.value,
-                press: () => controller.cheangePage(0),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width / 3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButtomBarDef(
+                      icon: Icons.home_outlined,
+                      order: 0,
+                      check: controller.pageNumber.value,
+                      press: () => controller.cheangePage(0),
+                    ),
+                    IconButtomBarDef(
+                      icon: Icons.shopping_bag_outlined,
+                      order: 1,
+                      check: controller.pageNumber.value,
+                      press: () => controller.cheangePage(1),
+                    ),
+                  ],
+                ),
               ),
-              IconButtomBarDef(
-                icon: Icons.shopping_bag_outlined,
-                order: 1,
-                check: controller.pageNumber.value,
-                press: () => controller.cheangePage(1),
-              ),
-              IconButtomBarDef(
-                icon: Icons.favorite_border,
-                order: 2,
-                check: controller.pageNumber.value,
-                press: () => controller.cheangePage(2),
-              ),
-              IconButtomBarDef(
-                icon: Icons.person_outline_outlined,
-                order: 3,
-                check: controller.pageNumber.value,
-                press: () => controller.cheangePage(3),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width / 3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButtomBarDef(
+                      icon: Icons.favorite_border,
+                      order: 2,
+                      check: controller.pageNumber.value,
+                      press: () => controller.cheangePage(2),
+                    ),
+                    IconButtomBarDef(
+                      icon: Icons.person_outline_outlined,
+                      order: 3,
+                      check: controller.pageNumber.value,
+                      press: () => controller.cheangePage(3),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -51,32 +69,23 @@ class BottomNavigationBarDef extends StatelessWidget {
   }
 }
 
-class IconButtomBarDef extends StatelessWidget {
-  const IconButtomBarDef({
+class AddButton extends StatelessWidget {
+  const AddButton({
     super.key,
-    required this.check,
-    required this.icon,
-    required this.order,
-    required this.press,
   });
-  final void Function() press;
-  final IconData icon;
-  final int order;
-  final int check;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: press,
-      child: Container(
-        padding: const EdgeInsets.only(bottom: 5, top: 5, left: 8, right: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: order == check ? ColorManager.litePrimaryColor : null),
-        child: Icon(icon,
-            color: order == check
-                ? ColorManager.darkPrimaryColor
-                : ColorManager.darkGrayIcon,
-            size: 30),
+    return Container(
+      height: 70,
+      width: 70,
+      decoration: BoxDecoration(
+          color: ColorManager.primaryColor,
+          borderRadius: BorderRadius.circular(30)),
+      child: const Icon(
+        Icons.add,
+        color: ColorManager.white,
+        size: 30,
       ),
     );
   }

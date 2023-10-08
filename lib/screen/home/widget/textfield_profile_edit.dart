@@ -10,6 +10,7 @@ class TextFormFieldProfileEdit extends StatelessWidget {
     this.icon,
     this.validator,
     required this.keyboard,
+    required this.press,
   });
   final String label;
   final IconData? icon;
@@ -17,6 +18,7 @@ class TextFormFieldProfileEdit extends StatelessWidget {
   final String? Function(String?)? validator;
   final double paddingTop;
   final TextInputType keyboard;
+  final void Function(String?) press;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,6 +28,7 @@ class TextFormFieldProfileEdit extends StatelessWidget {
         controller: controller,
         validator: validator,
         decoration: inputDecorationProgfileEdit(icon, label),
+        onChanged: press,
       ),
     );
   }

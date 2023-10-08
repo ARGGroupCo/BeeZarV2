@@ -14,7 +14,7 @@ class ProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => press,
+      onTap: press,
       child: Container(
         margin: const EdgeInsets.only(bottom: 15),
         width: MediaQuery.of(context).size.width,

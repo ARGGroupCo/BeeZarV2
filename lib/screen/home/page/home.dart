@@ -16,6 +16,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const AddButton(),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: appBarHome(context),
       bottomNavigationBar: const BottomNavigationBarDef(),
       body: Padding(

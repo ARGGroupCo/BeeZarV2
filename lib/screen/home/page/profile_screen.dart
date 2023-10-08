@@ -1,15 +1,20 @@
 import 'package:beezer_v2/res/font_def.dart';
-import 'package:beezer_v2/screen/home/page/profile_edit_screen.dart';
+import 'package:beezer_v2/screen/auth/auth_controller.dart';
+import 'package:beezer_v2/screen/auth/login/login_screen.dart';
+import 'package:beezer_v2/screen/auth/update_user/profile_edit_screen.dart';
 import 'package:beezer_v2/screen/home/widget/app_bar_profile.dart';
 import 'package:beezer_v2/screen/home/widget/profile_button.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
+import 'package:beezer_v2/widget/progress_def.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final storeg = GetStorage();
     return Scaffold(
       appBar: appBarprofile(context),
       bottomNavigationBar: const BottomNavigationBarDef(),
@@ -25,8 +30,8 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text("UserName", style: FontDef.w700182Cb),
-                  const Text("email@email.com", style: FontDef.w500152Cg),
+                  const Text("اسم المستخدم", style: FontDef.w500152Cg),
+                  Text(storeg.read("MyEmail"), style: FontDef.w700182Cb),
                   const SizedBox(
                     height: 20,
                   ),
@@ -46,7 +51,14 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.policy,
                   ),
                   ProfileButton(
-                    press: () {},
+                    press: () async {
+                      progressDef();
+                      AuthController authController = Get.find();
+                      var b = await authController.logout();
+                      if (b) {
+                        Get.offAll(const LoginScreen());
+                      }
+                    },
                     text: "تسجيل الخروج",
                     icon: Icons.logout,
                   ),

@@ -36,6 +36,9 @@ class AuthController extends GetxController {
       if (remmberMy) {
         storeg.write("MyEmail", email);
         storeg.write("MyPassword", password);
+      } else {
+        storeg.remove("MyEmail");
+        storeg.remove("MyPassword");
       }
       return true;
     }
@@ -82,6 +85,45 @@ class AuthController extends GetxController {
       }
     }
     checkUser = false;
+    return false;
+  }
+
+  Future<bool> logout() async {
+    http.Response response =
+        await http.post(Hostting.logout, headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      final storeg = GetStorage();
+      storeg.remove("token");
+      return true;
+    }
+    return false;
+  }
+
+  Future<UserModel?> getUser() async {
+    http.Response response =
+        await http.get(Hostting.getUser, headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      var user = UserModel.fromJson(body["data"]);
+      return user;
+    }
+    return null;
+  }
+
+  Future<bool> updateUser(UserModel userModel) async {
+    http.MultipartRequest request =
+        http.MultipartRequest("post", Hostting.updateUser);
+    request.headers.addAll(Hostting().getHeader());
+    request.fields["name"] = userModel.name!;
+    request.fields["email"] = userModel.email!;
+    request.fields["address"] = userModel.address!;
+    request.fields["phone"] = userModel.phone!;
+    request.files.add(await http.MultipartFile.fromPath(
+        "image", "lib/assets/images/addToPerson.jpg"));
+    var respons = await request.send();
+    if (respons.statusCode == 200) {
+      return true;
+    }
     return false;
   }
 }

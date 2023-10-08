@@ -38,7 +38,7 @@ AppBar appBarprofile(BuildContext context) {
               decoration: BoxDecoration(
                   image: const DecorationImage(
                       image: AssetImage(
-                    "lib/assets/images/logoo 1.png",
+                    "lib/assets/images/person.jpg",
                   )),
                   border: const GradientBoxBorder(
                     gradient: LinearGradient(

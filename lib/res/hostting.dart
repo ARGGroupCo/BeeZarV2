@@ -26,6 +26,7 @@ class Hostting {
   //api
   static Uri login = Uri.parse("$api/login");
   static Uri register = Uri.parse("$api/signup");
+  static Uri logout = Uri.parse("$api/logout");
   static Uri checkTokenValidity = Uri.parse("$api/check-token-validity");
   static Uri getCategory = Uri.parse("$api/get_category");
   static Uri getSubCategory(int num) => Uri.parse("$api/get_sub_category/$num");
@@ -34,4 +35,6 @@ class Hostting {
   static Uri addDeleteFavourite(int id) =>
       Uri.parse("$api/add&delete_for_favourite/$id");
   static Uri getMyItem = Uri.parse("$api/getMyItems");
+  static Uri updateUser = Uri.parse("$api/user");
+  static Uri getUser = Uri.parse("$api/profile");
 }
