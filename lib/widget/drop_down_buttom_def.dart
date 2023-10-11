@@ -24,7 +24,7 @@ class _DropDownButtomDefState extends State<DropDownButtonDef> {
       value: _val,
       items: listRegion,
       onChanged: (value) => setState(() {
-        _val = value;
+        _val = value.toString();
         homeController.changeRegion(value!);
         homeController.searchItem();
       }),

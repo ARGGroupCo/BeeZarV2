@@ -137,4 +137,9 @@ class FontDef {
     fontSize: 24,
     color: ColorManager.white,
   );
+  static const TextStyle w700S24Cb = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: ColorManager.black,
+  );
 }

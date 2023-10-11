@@ -2,6 +2,7 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/login/login_screen.dart';
 import 'package:beezer_v2/screen/auth/update_user/profile_edit_screen.dart';
+import 'package:beezer_v2/screen/contact_us/contact_us_screen.dart';
 import 'package:beezer_v2/screen/home/widget/add_button.dart';
 import 'package:beezer_v2/screen/home/widget/app_bar_profile.dart';
 import 'package:beezer_v2/screen/home/widget/profile_button.dart';
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.edit,
                   ),
                   ProfileButton(
-                    press: () {},
+                    press: () => Get.to(const ContactUsScreen()),
                     text: "تواصل معنا",
                     icon: Icons.contact_mail_outlined,
                   ),
