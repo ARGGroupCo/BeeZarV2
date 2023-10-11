@@ -1,3 +1,4 @@
+import 'package:beezer_v2/screen/create_item/create_item_screen.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
 import 'package:beezer_v2/screen/home/widget/add_button.dart';
 import 'package:beezer_v2/screen/home/widget/item_show.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
     HomeController homeController = Get.find();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.to(const CreateItem()),
         child: const AddButton(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
