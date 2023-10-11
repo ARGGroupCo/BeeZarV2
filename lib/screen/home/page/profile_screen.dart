@@ -6,6 +6,7 @@ import 'package:beezer_v2/screen/contact_us/contact_us_screen.dart';
 import 'package:beezer_v2/screen/home/widget/add_button.dart';
 import 'package:beezer_v2/screen/home/widget/app_bar_profile.dart';
 import 'package:beezer_v2/screen/home/widget/profile_button.dart';
+import 'package:beezer_v2/screen/user_policy/usage_policy.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:beezer_v2/widget/progress_def.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,9 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.contact_mail_outlined,
                   ),
                   ProfileButton(
-                    press: () {},
+                    press: () => Get.to(const UserPolicy(
+                      isRegister: false,
+                    )),
                     text: "شروط الاستخدام",
                     icon: Icons.policy,
                   ),
