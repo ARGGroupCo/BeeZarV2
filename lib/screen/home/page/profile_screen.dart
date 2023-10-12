@@ -3,8 +3,8 @@ import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:beezer_v2/screen/auth/login/login_screen.dart';
 import 'package:beezer_v2/screen/auth/update_user/profile_edit_screen.dart';
 import 'package:beezer_v2/screen/contact_us/contact_us_screen.dart';
-import 'package:beezer_v2/screen/home/widget/add_button.dart';
 import 'package:beezer_v2/screen/home/widget/app_bar_profile.dart';
+import 'package:beezer_v2/screen/home/widget/button_add_item.dart';
 import 'package:beezer_v2/screen/home/widget/profile_button.dart';
 import 'package:beezer_v2/screen/user_policy/usage_policy.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
@@ -19,10 +19,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final storeg = GetStorage();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const AddButton(),
-      ),
+      floatingActionButton: const ButtonAddItem(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: appBarprofile(context),
       bottomNavigationBar: const BottomNavigationBarDef(),

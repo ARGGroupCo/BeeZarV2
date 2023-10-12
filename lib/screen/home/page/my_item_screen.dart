@@ -1,7 +1,7 @@
 import 'package:beezer_v2/model/item_model.dart';
 import 'package:beezer_v2/screen/home/home_controller.dart';
-import 'package:beezer_v2/screen/home/widget/add_button.dart';
 import 'package:beezer_v2/screen/home/widget/app_bar_fav.dart';
+import 'package:beezer_v2/screen/home/widget/button_add_item.dart';
 import 'package:beezer_v2/screen/home/widget/show_list_item_widget.dart';
 import 'package:beezer_v2/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +14,7 @@ class MyItemScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const AddButton(),
-      ),
+      floatingActionButton: const ButtonAddItem(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: appBarFav(context, "إعلاناتي"),
       bottomNavigationBar: const BottomNavigationBarDef(),

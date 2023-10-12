@@ -1,5 +1,5 @@
 import 'package:beezer_v2/screen/home/home_controller.dart';
-import 'package:beezer_v2/screen/home/page/Home.dart';
+import 'package:beezer_v2/screen/home/page/home_screen.dart';
 import 'package:beezer_v2/screen/home/page/my_favorite_screen.dart';
 import 'package:beezer_v2/screen/home/page/my_item_screen.dart';
 import 'package:beezer_v2/screen/home/page/profile_screen.dart';
