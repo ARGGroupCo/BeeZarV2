@@ -2,8 +2,9 @@ import 'package:beezer_v2/res/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSend extends StatelessWidget {
-  const ButtonSend({super.key, required this.press});
+  const ButtonSend({super.key, required this.press, required this.hint});
   final void Function() press;
+  final String hint;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +15,7 @@ class ButtonSend extends StatelessWidget {
             fixedSize: MaterialStatePropertyAll(Size(250, 40)),
             backgroundColor:
                 MaterialStatePropertyAll(ColorManager.primaryColor)),
-        child: const Text("ارسال"),
+        child: Text(hint),
       ),
     );
   }

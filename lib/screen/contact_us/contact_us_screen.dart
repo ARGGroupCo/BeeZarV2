@@ -4,7 +4,7 @@ import 'package:beezer_v2/screen/contact_us/widget/border_def.dart';
 import 'package:beezer_v2/screen/contact_us/widget/button_send.dart';
 import 'package:beezer_v2/screen/contact_us/widget/list_drop_dawn_subject.dart';
 import 'package:beezer_v2/screen/contact_us/widget/row_icon.dart';
-import 'package:beezer_v2/screen/contact_us/widget/text_form_field_contact_us.dart';
+import 'package:beezer_v2/widget/text_form_field_contact_us_and_add_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,23 +54,23 @@ class ContactUsScreen extends StatelessWidget {
                   hint: const Text("إختر الموضوع"),
                   style: FontDef.w400S14Cg,
                 ),
-                TextFormFieldContactUs(
+                TextFormFieldContactUsAndAddItem(
                   controller: name,
                   keyboard: TextInputType.text,
                   label: "الاسم",
                 ),
-                TextFormFieldContactUs(
+                TextFormFieldContactUsAndAddItem(
                   controller: email,
                   keyboard: TextInputType.emailAddress,
                   label: "البريد الالكتروني",
                 ),
-                TextFormFieldContactUs(
+                TextFormFieldContactUsAndAddItem(
                   controller: massege,
                   keyboard: TextInputType.text,
                   label: "نص الرسالة",
                   minLine: 4,
                 ),
-                ButtonSend(press: () {}),
+                ButtonSend(press: () {}, hint: "ارسال"),
                 const RowIcon()
               ],
             ),

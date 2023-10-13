@@ -5,7 +5,7 @@ import 'package:beezer_v2/screen/auth/login/login_screen.dart';
 import 'package:beezer_v2/screen/auth/login/widget/row_divider_text_divider.dart';
 import 'package:beezer_v2/screen/auth/register/register_screen_two.dart';
 import 'package:beezer_v2/screen/auth/register/widget/appbar_register.dart';
-import 'package:beezer_v2/screen/auth/register/widget/row_number_screen_register.dart';
+import 'package:beezer_v2/widget/row_number_screen_register.dart';
 import 'package:beezer_v2/widget/elevated_button_def.dart';
 import 'package:beezer_v2/widget/google_facebook_icon.dart';
 import 'package:beezer_v2/widget/have_account.dart';

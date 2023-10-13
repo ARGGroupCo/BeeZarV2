@@ -2,8 +2,8 @@ import 'package:beezer_v2/res/font_def.dart';
 import 'package:beezer_v2/screen/contact_us/widget/border_def.dart';
 import 'package:flutter/material.dart';
 
-class TextFormFieldContactUs extends StatelessWidget {
-  const TextFormFieldContactUs(
+class TextFormFieldContactUsAndAddItem extends StatelessWidget {
+  const TextFormFieldContactUsAndAddItem(
       {super.key,
       required this.keyboard,
       required this.controller,
