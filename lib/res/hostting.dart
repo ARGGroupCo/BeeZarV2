@@ -37,4 +37,5 @@ class Hostting {
   static Uri getMyItem = Uri.parse("$api/getMyItems");
   static Uri updateUser = Uri.parse("$api/user");
   static Uri getUser = Uri.parse("$api/profile");
+  static Uri createItem = Uri.parse("$api/create_item");
 }

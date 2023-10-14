@@ -62,7 +62,7 @@ class AddItemController extends GetxController {
 
   Future<bool> addItem() async {
     http.MultipartRequest request =
-        http.MultipartRequest("post", Hostting.getUser);
+        http.MultipartRequest("post", Hostting.createItem);
     request.headers.addAll(Hostting().getHeader());
     request.fields['name'] = item.name!;
     request.fields['description'] = item.des!;

@@ -6,6 +6,7 @@ import 'package:beezer_v2/screen/add_item/add_item_controller.dart';
 import 'package:beezer_v2/screen/add_item/widget/appbar_add_item.dart';
 import 'package:beezer_v2/screen/contact_us/widget/border_def.dart';
 import 'package:beezer_v2/screen/contact_us/widget/button_send.dart';
+import 'package:beezer_v2/widget/list_region.dart';
 import 'package:beezer_v2/widget/row_number_screen_register.dart';
 import 'package:beezer_v2/widget/text_form_field_contact_us_and_add_item.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class AddItemScreen extends StatelessWidget {
     int? category;
     // ignore: unused_local_variable
     int? sub;
+    String? region;
     return Scaffold(
       appBar: appBarAddItem(),
       body: Padding(
@@ -84,11 +86,23 @@ class AddItemScreen extends StatelessWidget {
                     label: "السعر",
                     validator: (value) => ValidatorDef.validatorPrice(value),
                   ),
+                  const SizedBox(height: 20),
+                  DropdownButtonFormField<String?>(
+                    value: region,
+                    decoration: borderDef(""),
+                    items: listRegion,
+                    onChanged: (value) {
+                      region = value;
+                    },
+                    hint: const Text("إختر المحافظة"),
+                    style: FontDef.w400S14Cg,
+                    validator: (value) => ValidatorDef.validatorRegion(value),
+                  ),
                   TextFormFieldContactUsAndAddItem(
                     keyboard: TextInputType.text,
                     controller: description,
                     label: "وصف المادة",
-                    minLine: 5,
+                    minLine: 4,
                     validator: (value) =>
                         ValidatorDef.validatordiscreption(value),
                   ),
@@ -102,6 +116,7 @@ class AddItemScreen extends StatelessWidget {
                           name: name.text,
                           price: double.tryParse(price.text),
                           subCatID: sub,
+                          address: region,
                         );
                         addItemController.item = item;
                         Get.to(const AddImageToItem());
