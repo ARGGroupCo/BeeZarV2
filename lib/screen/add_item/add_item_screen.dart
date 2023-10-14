@@ -1,4 +1,6 @@
+import 'package:beezer_v2/model/add_item.dart';
 import 'package:beezer_v2/res/font_def.dart';
+import 'package:beezer_v2/res/validator_def.dart';
 import 'package:beezer_v2/screen/add_item/add_image_to_item.dart';
 import 'package:beezer_v2/screen/add_item/add_item_controller.dart';
 import 'package:beezer_v2/screen/add_item/widget/appbar_add_item.dart';
@@ -15,7 +17,7 @@ class AddItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AddItemController addItemController = Get.find();
-    GlobalKey formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     TextEditingController name = TextEditingController();
     TextEditingController description = TextEditingController();
     TextEditingController price = TextEditingController();
@@ -47,6 +49,7 @@ class AddItemScreen extends StatelessWidget {
                     },
                     hint: const Text("إختر التصنيف"),
                     style: FontDef.w400S14Cg,
+                    validator: (value) => ValidatorDef.validatorGategory(value),
                   ),
                   const SizedBox(height: 20),
                   DropdownButtonFormField<int?>(
@@ -66,26 +69,44 @@ class AddItemScreen extends StatelessWidget {
                     onChanged: (value) => sub = value,
                     hint: const Text("إختر التصنيف الفرعي"),
                     style: FontDef.w400S14Cg,
+                    validator: (value) =>
+                        ValidatorDef.validatorSubGategory(value),
                   ),
                   TextFormFieldContactUsAndAddItem(
                     keyboard: TextInputType.text,
                     controller: name,
                     label: "اسم المادة",
+                    validator: (value) => ValidatorDef.validatorName(value),
                   ),
                   TextFormFieldContactUsAndAddItem(
                     keyboard: TextInputType.text,
                     controller: price,
                     label: "السعر",
+                    validator: (value) => ValidatorDef.validatorPrice(value),
                   ),
                   TextFormFieldContactUsAndAddItem(
                     keyboard: TextInputType.text,
                     controller: description,
                     label: "وصف المادة",
                     minLine: 5,
+                    validator: (value) =>
+                        ValidatorDef.validatordiscreption(value),
                   ),
                   const SizedBox(height: 40),
                   ButtonSend(
-                    press: () => Get.to(const AddImageToItem()),
+                    press: () {
+                      if (formKey.currentState!.validate()) {
+                        AddItem item = AddItem(
+                          catId: category,
+                          des: description.text,
+                          name: name.text,
+                          price: double.tryParse(price.text),
+                          subCatID: sub,
+                        );
+                        addItemController.item = item;
+                        Get.to(const AddImageToItem());
+                      }
+                    },
                     hint: "التالي",
                   )
                 ],

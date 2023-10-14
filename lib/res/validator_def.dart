@@ -39,4 +39,39 @@ class ValidatorDef {
     }
     return null;
   }
+
+  static String? validatorGategory(val) {
+    if (val == null) {
+      return "الرجاء اختيار صنف ";
+    }
+    return null;
+  }
+
+  static String? validatorSubGategory(val) {
+    if (val == null) {
+      return "الرجاء اختيار صنف فرعي ";
+    }
+    return null;
+  }
+
+  static String? validatorName(val) {
+    if (val == null || val.isEmpty || val.toString().length < 5) {
+      return "الرجاء ادخال اسم المادة اكثر من 5 محارف  ";
+    }
+    return null;
+  }
+
+  static String? validatorPrice(val) {
+    if (val == null || val.isEmpty || int.tryParse(val) == 0) {
+      return "الرجاء ادخال سعر صحيح لا يساوي 0  ";
+    }
+    return null;
+  }
+
+  static String? validatordiscreption(val) {
+    if (val == null || val.isEmpty || val.toString().length < 10) {
+      return "الرجاء ادخال وصف للمادة اكثر من 10 محارف  ";
+    }
+    return null;
+  }
 }
