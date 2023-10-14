@@ -3,8 +3,11 @@ import 'package:beezer_v2/model/login_user_model.dart';
 import 'package:beezer_v2/model/register_user_model.dart';
 import 'package:beezer_v2/model/user_model.dart';
 import 'package:beezer_v2/res/hostting.dart';
+import 'package:beezer_v2/screen/home/page/home_screen.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
@@ -126,4 +129,69 @@ class AuthController extends GetxController {
     }
     return false;
   }
+
+  Future signinGoogle() async {
+    final user = await GoogleSignInApi.login();
+    if (user == null) {
+      Get.snackbar("title", "Nooooooooooooooooooo user ");
+    } else {
+      Get.snackbar(
+        "مرحباً بك ",
+        "أهلا بك${user.email} بتطبيق بيزار ",
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      Get.to(const HomeScreen());
+    }
+  }
+
+  Future<void> facebookLogin() async {
+    // Create an instance of FacebookLogin
+    final fb = FacebookLogin();
+    final res = await fb.logIn(permissions: [
+      FacebookPermission.publicProfile, //اذن الحصول على البرفايل
+      FacebookPermission.email, //اذن الحصول على الايميل
+    ]);
+    // Check result status
+    switch (res.status) {
+      case FacebookLoginStatus.success:
+        final FacebookAccessToken? accessToken = res
+            .accessToken; // Send access token to server for validation and auth
+        final profile = await fb.getUserProfile(); // Get profile data
+        final imageUrl =
+            await fb.getProfileImageUrl(width: 100); // Get profile img
+        final email = await fb.getUserEmail(); // get user's email
+
+        print('Access token: ${accessToken?.token}');
+        print('Hello, ${profile!.name}! You ID: ${profile.userId}');
+        print('Your profile image: $imageUrl');
+        if (email != null) {
+          Get.snackbar(
+            "مرحباً بك ",
+            "أهلا بك${profile.name} بتطبيق بيزار ",
+            duration: const Duration(seconds: 3),
+            snackPosition: SnackPosition.TOP,
+          );
+
+          Get.to(const HomeScreen());
+        } else {
+          Get.snackbar("title", "Nooooooooooooooooooo user ");
+        }
+        print('And your email is $email');
+
+        break;
+      case FacebookLoginStatus.cancel:
+        // User cancel log in
+        break;
+      case FacebookLoginStatus.error:
+        // Log in failed
+        print('Error while log in: ${res.error}');
+        break;
+    }
+  }
+}
+
+class GoogleSignInApi {
+  static final _googleSignIn = GoogleSignIn();
+  static Future<GoogleSignInAccount?> login() => _googleSignIn.signIn();
 }

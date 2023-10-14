@@ -20,10 +20,11 @@ class _ConttactButtomAndFavoriteState extends State<ConttactButtomAndFavorite> {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    var fav = homeController.itemModelAll
+    var fav1 = homeController.itemModelAll
         .where((p0) => p0.id == widget.item.id)
-        .first
-        .favorite;
+        .firstOrNull;
+    var fav = fav1 == null ? false : fav1.favorite;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(

@@ -13,21 +13,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddItemScreen extends StatelessWidget {
-  const AddItemScreen({super.key});
-
+  const AddItemScreen({super.key, this.item});
+  final AddItem? item;
   @override
   Widget build(BuildContext context) {
     AddItemController addItemController = Get.find();
     final formKey = GlobalKey<FormState>();
-    TextEditingController name = TextEditingController();
-    TextEditingController description = TextEditingController();
-    TextEditingController price = TextEditingController();
-    int? category;
-    // ignore: unused_local_variable
-    int? sub;
-    String? region;
+
+    TextEditingController name =
+        TextEditingController(text: item == null ? null : item!.name);
+    TextEditingController description =
+        TextEditingController(text: item == null ? null : item!.des);
+    TextEditingController price = TextEditingController(
+        text: item == null ? null : item!.price.toString());
+    int? category = item == null ? null : item!.catId;
+    if (item != null) {
+      addItemController.changecategory(item!.catId!);
+    }
+    int? sub = item == null ? null : item!.subCatID;
+    String? region = item == null ? null : item!.address;
     return Scaffold(
-      appBar: appBarAddItem(),
+      appBar: appBarAddItem(item == null),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Form(
@@ -81,22 +87,25 @@ class AddItemScreen extends StatelessWidget {
                     validator: (value) => ValidatorDef.validatorName(value),
                   ),
                   TextFormFieldContactUsAndAddItem(
-                    keyboard: TextInputType.text,
+                    keyboard: TextInputType.number,
                     controller: price,
                     label: "السعر",
                     validator: (value) => ValidatorDef.validatorPrice(value),
                   ),
                   const SizedBox(height: 20),
-                  DropdownButtonFormField<String?>(
-                    value: region,
-                    decoration: borderDef(""),
-                    items: listRegion,
-                    onChanged: (value) {
-                      region = value;
-                    },
-                    hint: const Text("إختر المحافظة"),
-                    style: FontDef.w400S14Cg,
-                    validator: (value) => ValidatorDef.validatorRegion(value),
+                  Visibility(
+                    visible: item == null,
+                    child: DropdownButtonFormField<String?>(
+                      value: region,
+                      decoration: borderDef(""),
+                      items: listRegion,
+                      onChanged: (value) {
+                        region = value;
+                      },
+                      hint: const Text("إختر المحافظة"),
+                      style: FontDef.w400S14Cg,
+                      validator: (value) => ValidatorDef.validatorRegion(value),
+                    ),
                   ),
                   TextFormFieldContactUsAndAddItem(
                     keyboard: TextInputType.text,
@@ -110,7 +119,8 @@ class AddItemScreen extends StatelessWidget {
                   ButtonSend(
                     press: () {
                       if (formKey.currentState!.validate()) {
-                        AddItem item = AddItem(
+                        AddItem itemNew = AddItem(
+                          id: item == null ? null : item!.id,
                           catId: category,
                           des: description.text,
                           name: name.text,
@@ -118,8 +128,10 @@ class AddItemScreen extends StatelessWidget {
                           subCatID: sub,
                           address: region,
                         );
-                        addItemController.item = item;
-                        Get.to(const AddImageToItem());
+                        addItemController.item = itemNew;
+                        Get.to(AddImageToItem(
+                          imgs: item == null ? null : item!.iamgeUri,
+                        ));
                       }
                     },
                     hint: "التالي",

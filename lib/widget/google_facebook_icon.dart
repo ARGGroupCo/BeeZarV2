@@ -1,12 +1,7 @@
+import 'package:beezer_v2/screen/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-import '../screen/home/page/home_screen.dart';
 
 class GoogleFacebookIcon extends StatelessWidget {
   const GoogleFacebookIcon({
@@ -29,6 +24,7 @@ class GoogleFacebookIcon extends StatelessWidget {
 <path d="M16.166 22.5V15.668H18.4688L18.8145 12.9932H16.166V11.291C16.166 10.5176 16.3799 9.99316 17.4873 9.99316H18.8906V7.6084C18.6475 7.57617 17.8096 7.50293 16.834 7.50293C14.7979 7.50293 13.4033 8.74512 13.4033 11.0273V12.9961H11.1094V15.6709H13.4033V22.5H16.166Z" fill="white"/>
 </svg>
 ''';
+    AuthController authController = Get.find();
     return Center(
       child: SizedBox(
         width: MediaQuery.sizeOf(context).width / 4,
@@ -38,13 +34,13 @@ class GoogleFacebookIcon extends StatelessWidget {
             SVGIcon(
               svg: facebook,
               press: () {
-              _facebookLogin();
+                authController.facebookLogin();
               },
             ),
             SVGIcon(
               svg: google,
               press: () {
-                signinGoogle();
+                authController.signinGoogle();
               },
             ),
           ],
@@ -52,8 +48,6 @@ class GoogleFacebookIcon extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 class SVGIcon extends StatelessWidget {
@@ -77,77 +71,3 @@ class SVGIcon extends StatelessWidget {
     );
   }
 }
-
-//Google Sign in
-
-Future signinGoogle() async {
-  final user = await GoogleSignInApi.login();
-  if (user == null) {
-    Get.snackbar("title", "Nooooooooooooooooooo user ");
-  } else {
-    Get.snackbar(
-      "مرحباً بك ",
-      "أهلا بك${user.email} بتطبيق بيزار ",
-      duration: const Duration(seconds: 3),
-      snackPosition: SnackPosition.BOTTOM,
-    );
-    Get.to(const HomeScreen());
-
-  }
-}
-
-class GoogleSignInApi {
-  static final _googleSignIn = GoogleSignIn();
-  static Future<GoogleSignInAccount?> login() => _googleSignIn.signIn();
-}
-//facebook signin
-Future<void> _facebookLogin() async {
-  // Create an instance of FacebookLogin
-  final fb = FacebookLogin();
-  final res = await fb.logIn(permissions: [
-    FacebookPermission.publicProfile, //اذن الحصول على البرفايل
-    FacebookPermission.email,//اذن الحصول على الايميل
-  ]);
-  // Check result status
-  switch (res.status) {
-    case FacebookLoginStatus.success:
-
-      final FacebookAccessToken? accessToken = res.accessToken;// Send access token to server for validation and auth
-      final profile = await fb.getUserProfile();// Get profile data
-      final imageUrl = await fb.getProfileImageUrl(width: 100);// Get profile img
-      final email = await fb.getUserEmail();// get user's email
-
-      print('Access token: ${accessToken?.token}');
-      print('Hello, ${profile!.name}! You ID: ${profile.userId}');
-      print('Your profile image: $imageUrl');
-      if (email != null)
-      {
-        Get.snackbar(
-          "مرحباً بك ",
-          "أهلا بك${profile!.name} بتطبيق بيزار ",
-          duration: const Duration(seconds: 3),
-          snackPosition: SnackPosition.TOP,
-        );
-
-        Get.to(const HomeScreen());
-
-        } else {
-        Get.snackbar("title", "Nooooooooooooooooooo user ");
-        }
-      print('And your email is $email');
-
-      break;
-    case FacebookLoginStatus.cancel:
-    // User cancel log in
-      break;
-    case FacebookLoginStatus.error:
-    // Log in failed
-      print('Error while log in: ${res.error}');
-      break;
-  }
-
-}
-
-
-
-

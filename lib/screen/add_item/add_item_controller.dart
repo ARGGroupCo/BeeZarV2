@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class AddItemController extends GetxController {
   RxList<DropdownMenuItem<int?>> cat = RxList<DropdownMenuItem<int?>>();
@@ -60,6 +61,23 @@ class AddItemController extends GetxController {
     imageFile.clear();
   }
 
+  Future<bool> getImages(List<String>? imgs) async {
+    imageFile.clear();
+    if (imgs != null) {
+      for (var element in imgs) {
+        http.Response response =
+            await http.get(Uri.parse("${Hostting.imageItem}/$element"));
+        if (response.statusCode == 200) {
+          var dir = await getTemporaryDirectory();
+          var filename = "${dir.path}/${element.split("/").last}";
+          imageFile.add(File(filename));
+          await imageFile.last.writeAsBytes(response.bodyBytes);
+        }
+      }
+    }
+    return true;
+  }
+
   Future<bool> addItem() async {
     http.MultipartRequest request =
         http.MultipartRequest("post", Hostting.createItem);
@@ -78,6 +96,44 @@ class AddItemController extends GetxController {
     request.files.addAll(files);
     var response = await request.send();
     if (response.statusCode == 200) {
+      HomeController homeController = Get.find();
+      await homeController.getAllItems(true);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> deleteItem(int id) async {
+    http.Response response = await http.delete(Hostting.deleteItem(id),
+        headers: Hostting().getHeader());
+    if (response.statusCode == 200) {
+      HomeController homeController = Get.find();
+      await homeController.getAllItems(true);
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> updateItem() async {
+    http.MultipartRequest request =
+        http.MultipartRequest("post", Hostting.updateItem(item.id!));
+    request.headers.addAll(Hostting().getHeader());
+    request.fields["name"] = item.name!;
+    request.fields["description"] = item.des!;
+    request.fields["category_id"] = item.catId.toString();
+    request.fields["sub_category_id"] = item.subCatID.toString();
+    request.fields["price"] = item.price.toString();
+    List<http.MultipartFile> files = [];
+    for (File file in imageFile) {
+      var f = await http.MultipartFile.fromPath('images[]', file.path);
+      files.add(f);
+    }
+    request.files.addAll(files);
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      HomeController homeController = Get.find();
+      await homeController.getAllItems(true);
       return true;
     } else {
       return false;

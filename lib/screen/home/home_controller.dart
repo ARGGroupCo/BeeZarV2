@@ -170,6 +170,7 @@ class HomeController extends GetxController {
           itemModelShearch.add(it);
           listDropDownSearch.add("${it.id} - ${it.name}");
         }
+
         await getFavourite(null);
         refresh();
         return list;
