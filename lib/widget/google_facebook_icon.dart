@@ -128,6 +128,7 @@ Future<void> _facebookLogin() async {
           duration: const Duration(seconds: 3),
           snackPosition: SnackPosition.TOP,
         );
+
         Get.to(const HomeScreen());
 
         } else {
