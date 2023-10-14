@@ -52,8 +52,8 @@ class RowItemHome extends StatelessWidget {
                     margin: const EdgeInsets.only(
                         left: 10, top: 5, bottom: 5, right: 5),
                     padding: const EdgeInsets.all(5),
-                    height: sizeH,
-                    width: sizeW,
+                    // height: sizeH,
+                    // width: sizeW,
                     decoration: BoxDecoration(
                       color: ColorManager.white,
                       borderRadius: BorderRadius.circular(10),
