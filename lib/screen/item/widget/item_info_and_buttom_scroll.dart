@@ -39,17 +39,20 @@ class ItemInfoAndButtomScroll extends StatelessWidget {
                 ),
               ),
             ),
-            DotsIndicator(
-              reversed: false,
-              dotsCount: number,
-              position: itemController.pagenum,
-              decorator: DotsDecorator(
-                activeColor: ColorManager.primaryColor,
-                activeSize: const Size(18, 9),
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
+            GetX<ItemController>(
+              init: itemController,
+              builder: (controller) => DotsIndicator(
+                reversed: false,
+                dotsCount: number,
+                position: itemController.pagenum.value,
+                decorator: DotsDecorator(
+                  activeColor: ColorManager.primaryColor,
+                  activeSize: const Size(18, 9),
+                  activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                ),
               ),
-            ),
+            )
           ],
         ),
         const ArrowButtom(isleft: false, show: true),

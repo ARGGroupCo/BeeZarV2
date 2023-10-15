@@ -3,5 +3,9 @@ import 'package:get/get.dart';
 
 class ItemController extends GetxController {
   PageController pageController = PageController();
-  int pagenum = 0;
+  RxInt pagenum = 0.obs;
+
+  void changeimage(int val) {
+    pagenum.value = val;
+  }
 }
